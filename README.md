@@ -24,7 +24,7 @@ foreach ($list as $key, $value) {
     // do something 
 }
 
-$item->head(); //  ['test1', 'test2']
+$item = $list->get(); //  ['test1', 'test2']
 $l = $list->length() // 3
 
 $item = $list->pop(); // ['test1', 'test2']

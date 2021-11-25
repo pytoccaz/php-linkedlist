@@ -62,12 +62,24 @@ abstract class AbstractSimpleLinkedList implements \Iterator {
 
     /**
      * Returns the value of the head item (ie the left most item)
+     * Mainly used for internal logic.
      * @return AbstractItem|null
      */
     public function head():?AbstractItem 
     {
+        return $this->head;
+    }
+
+    /**
+     * Returns the value associated with the head item (ie the left most item)
+     * @return mixed|null
+     */
+    public function get()
+    {
         return $this->head->getValue();
     }
+
+
     /**
      * Pushes an item at the left of list. 
      * @return $this
@@ -85,7 +97,7 @@ abstract class AbstractSimpleLinkedList implements \Iterator {
     /**
      * Pops head item from the list.
      * The poped item is detached from its next Item.
-     * @return mixed|null
+     * @return mixed|null poped item associated value  
      */
     public function lpop()  
     {

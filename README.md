@@ -10,7 +10,7 @@ composer require obernard/linkedlist
 
 ## Usage of final class FiloList
 
-FiloList is given as an example of implementation of AbstractSimpleLinkedList but extending AbstractSimpleLinkedList and AbstractItem offers much more coding potentials.
+Final classes like `FiloList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoubledLinkedList` offers much more coding potentials.
 
 Create an empty list and add items.
 ```php
@@ -24,7 +24,6 @@ foreach ($list as $key, $value) {
     // do something 
 }
 
-$item = $list->get(); //  ['test1', 'test2']
 $l = $list->length() // 3
 
 $item = $list->pop(); // ['test1', 'test2']

@@ -1,31 +1,31 @@
 <?php
-
+/*
+ * This file is part of the Obernard package.
+ *
+ * (c) Olivier Bernard
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace  Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\LinkItemException;
 
 /**
  * 
- * First in Last out linked-list abstract class.
- * 
- * An item in the list is linked to a next item, arbitrary assumed at its right.
- *  
- * By definition, the right most item (ie the last item) is not linked to a next item.
- * 
- * The link between two items is an unidirectionnal relation:
- *   Whatever the $item index is inside the list, $item->prev() === null.    
+ * Defines common properties and methods for all other List classes.
  * 
  * @author Olivier Bernard
  */   
 
-abstract class AbstractSimpleLinkedList implements \Iterator {
+abstract class AbstractCommonList implements \Iterator {
 
 
     /**
      * Points to the "left most" item
      * @var AbstractItem|null
      */
-    private $head = null; 
+    protected $head = null; 
 
     /**
      * Points to the item returned during iteration.
@@ -42,7 +42,7 @@ abstract class AbstractSimpleLinkedList implements \Iterator {
     /**
      * @var int the number of items in the list
      */
-    private $length = 0;
+    protected $length = 0;
 
     /**
      * Returns the number of items inside the list.
@@ -61,56 +61,13 @@ abstract class AbstractSimpleLinkedList implements \Iterator {
     }
 
     /**
-     * Returns the value of the head item (ie the left most item)
+     * Returns the the head item (ie the left most item)
      * Mainly used for internal logic.
      * @return AbstractItem|null
      */
-    public function head():?AbstractItem 
+    public function ihead():?AbstractItem 
     {
         return $this->head;
-    }
-
-    /**
-     * Returns the value associated with the head item (ie the left most item)
-     * @return mixed|null
-     */
-    public function get()
-    {
-        return $this->head->getValue();
-    }
-
-
-    /**
-     * Pushes an item at the left of list. 
-     * @return $this
-     */
-    public function lpush(AbstractItem $item):self {
-        if ($item->next())
-            throw new LinkItemException('Next item is already set !');
-
-        $item->setNext($this->head);
-        $this->head = $item;
-        $this->length+=1; // increment length
-        return $this;
-    }
-
-    /**
-     * Pops head item from the list.
-     * The poped item is detached from its next Item.
-     * @return mixed|null poped item associated value  
-     */
-    public function lpop()  
-    {
-         if ($this->length == 0)
-            return null;
-         else {
-            $itemToPop = $this->head;
-            $this->head = $this->head->next();
-            $this->length-=1; // deincrement length
- 
-            // detach poped item from its brother next item
-            return $itemToPop->setNext(null)->getValue();
-         }
     }
 
     /**

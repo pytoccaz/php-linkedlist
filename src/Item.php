@@ -11,14 +11,14 @@ namespace  Obernard\LinkedList;
 
 
 /**
- * FiloItem class defines an item inside a FiloList  
- *  An FiloItem is linked to a next item and has no previous item 
+ * Item class defines a concrete item inside a List  
  * 
  *  $this->next is arbitrary considered at the right of the item.
+ *  $this->prev is arbitrary considered at the left of the item.
  * 
  * @author Olivier Bernard
 */   
-final class FiloItem extends AbstractItem {
+final class Item extends AbstractItem {
 
     /**
      * @var mixed data stored in a FiloList item.
@@ -33,7 +33,8 @@ final class FiloItem extends AbstractItem {
     
 
     /**
-     * Just returns the iterator index position when iterated 
+     * IterableItemInterface getKey method's implementation
+     * Returns the iterator index position as key when iterated 
      * @param int $index 
      * 
      */
@@ -42,7 +43,8 @@ final class FiloItem extends AbstractItem {
     }
 
     /**
-     * Just returns the data property when iterated 
+     * IterableItemInterface getValue method's implementation
+     * Returns the data property as value when iterated 
      * @param int $index 
      * 
      */

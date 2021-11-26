@@ -11,15 +11,18 @@ namespace  Obernard\LinkedList;
 
 
 /**
- *  AbstractItem class defines an item inside a SimpleLinkedList or a DoubleLinkedList
- *  An AbstractItem is linked to a next item and a previous item 
+ *  AbstractItem class defines an item inside a SinglyLinkedList or a DoubledLinkedList
+ *  Inside DoubledLinkedList, an item is linked to a next item and a previous item. 
+ *  Inside SinglyLinkedList, an item is linked to a next item only. 
  * 
  *  - $this->next is arbitrary considered at the right of the item.
  *  - $this->prev is arbitrary considered at the left of the item.
  * 
  *  Final Item class must implement 2 methods:
- *  - getValue that defines the values retuned during list iteration or pop actions.
+ *  - getValue that defines the values retuned during list iteration.
  *  - getKey that defines the key returned during list iteration.
+ * 
+ * AbstractItem makes no assumption about data associated with final Item classes.
  * 
  * @author Olivier Bernard
 */   
@@ -48,7 +51,7 @@ abstract class AbstractItem implements IterableItemInterface {
 
     /**
      * Sets the previous item.   
-     * @return AbstractItem
+     * @return $this
      */
     public function setPrev(?AbstractItem $item):self {
         $this->prev = $item;
@@ -66,7 +69,7 @@ abstract class AbstractItem implements IterableItemInterface {
 
 
     /**
-     * Is the item the last inside a List ?
+     * Is the item last inside a List ?
      * @return bool
      */
     public function isLast():bool {
@@ -74,14 +77,20 @@ abstract class AbstractItem implements IterableItemInterface {
     }
 
     /**
-     * Is the item is first inside a a List ?
+     * Is the item first inside a a List ?
      * @return bool
      */
     public function isFirst():bool {
         return $this->prev === null;
     }
 
-
+    /**
+     * Is the item alone inside a a List ?
+     * @return bool
+     */
+    public function isAlone():bool {
+        return $this->isFirst() &&  $this->isLast();
+    }
     /**
      *  Returns the item's rank beginning at right (ie at the end).
      *  @return int 

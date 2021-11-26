@@ -11,30 +11,30 @@ namespace  Obernard\LinkedList;
 
 /**
  * 
- * First-in/last-out singly-linked list implementation.
+ * First-in/first-out doubled-linked list implementation.
  *  
  * 
  * @author Olivier Bernard
  */   
 
-final class FiloList extends AbstractSinglyLinkedList {
+final class FiFoList extends AbstractDoubledLinkedList {
 
     /**
      * Pushes data at the head of the stack. 
      * @return $this
      */
     public function add($data):self {
-        $this->ipush(new Item($data));
+        $this->ilpush(new Item($data));
         return $this;
     }
 
     /**
-     * Pops head data content from the stack.
+     * Pops tail data content from the stack.
      * @return mixed
      */
     public function pop() 
     {
-         return $this->ipop()->getValue();
+         return $this->irpop()->getValue();
     }
 
 };

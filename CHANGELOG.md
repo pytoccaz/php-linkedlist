@@ -1,17 +1,18 @@
 CHANGELOG
 =========
 
-0.1.1
------
-
- * `AbstractSimpleLinkedList->head()` method returns an `AbstractItem`
- * added `AbstractSimpleLinkedList->get()` method 
-
-
 0.1.0
 -----
 
- * added `AbstractItem` 
- * added `AbstractSimpleLinkedList` 
- * added `FiloItem`
- * added `FiloList`
+ * added `LinkItemException` class 
+ * added `AbstractItem` class 
+ * added `Item` class 
+ * added `AbstractCommonList` class  
+ * added `AbstractSinglyLinkedList` class 
+ * added `AbstractDoubledLinkedList` class 
+ * added `FiloList` class
+ * added `FifoList` class
+ * added `IterableItemInterface` class
+ * Tested classes
+
+ 

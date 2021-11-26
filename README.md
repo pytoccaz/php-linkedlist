@@ -10,7 +10,7 @@ composer require obernard/linkedlist
 
 ## Usage of final class FiloList
 
-Final classes like `FiloList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoubledLinkedList` offers much more coding potentials.
+Final classes like `FiloList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoublyLinkedList` offers much more coding potentials.
 
 Create an empty list and add items.
 ```php

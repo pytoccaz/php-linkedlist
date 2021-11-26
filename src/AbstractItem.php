@@ -11,8 +11,8 @@ namespace  Obernard\LinkedList;
 
 
 /**
- *  AbstractItem class defines an item inside a SinglyLinkedList or a DoubledLinkedList
- *  Inside DoubledLinkedList, an item is linked to a next item and a previous item. 
+ *  AbstractItem class defines an item inside a SinglyLinkedList or a DoublyLinkedList
+ *  Inside DoublyLinkedList, an item is linked to a next item and a previous item. 
  *  Inside SinglyLinkedList, an item is linked to a next item only. 
  * 
  *  - $this->next is arbitrary considered at the right of the item.

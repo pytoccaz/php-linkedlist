@@ -13,7 +13,7 @@ use Obernard\LinkedList\Exception\LinkItemException;
 
 /**
  * 
- * Doubled-linked list abstract class.
+ * Doubly-linked list abstract class.
  * 
  * An item in the list is linked to a next item, arbitrary assumed at its right;
  *  and to a previous item at its left.
@@ -24,7 +24,7 @@ use Obernard\LinkedList\Exception\LinkItemException;
  * @author Olivier Bernard
  */   
 
-abstract class AbstractDoubledLinkedList extends AbstractCommonList  {
+abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
   
     /**
      * Points to the "right most" item

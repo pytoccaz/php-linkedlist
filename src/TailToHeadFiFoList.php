@@ -11,7 +11,7 @@ namespace  Obernard\LinkedList;
 
 /**
  * 
- * First-in/first-out doubled-linked list implementation.
+ * First-in/first-out doubly-linked list implementation.
  * 
  * The entry point is the tail and the exit is the head.
  *  
@@ -19,7 +19,7 @@ namespace  Obernard\LinkedList;
  * @author Olivier Bernard
  */   
 
-final class TailToHeadFiFoList extends AbstractDoubledLinkedList {
+final class TailToHeadFiFoList extends AbstractDoublyLinkedList {
 
     /**
      * Pushes data at the tail of the list. 

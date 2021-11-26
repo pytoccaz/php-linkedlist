@@ -2,7 +2,7 @@
     "name": "obernard/linkedlist",
     "type": "library",
     "description": "Data Storage based on linkedlist",
-    "keywords": ["LinkedList", "Collection", "Iterator", "SinglyLinkedList", "DoubledLinkedList"],
+    "keywords": ["LinkedList", "Collection", "Iterator", "SinglyLinkedList", "DoublyLinkedList"],
     "license": "MIT",
   
     "authors": [

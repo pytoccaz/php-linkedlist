@@ -11,13 +11,13 @@ namespace  Obernard\LinkedList;
 
 /**
  * 
- * First-in/first-out doubled-linked list implementation.
+ * First-in/first-out doubly-linked list implementation.
  *  
  * 
  * @author Olivier Bernard
  */   
 
-final class FiFoList extends AbstractDoubledLinkedList {
+final class FiFoList extends AbstractDoublyLinkedList {
 
     /**
      * Pushes data at the head of the stack. 

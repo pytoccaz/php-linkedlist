@@ -2,7 +2,7 @@
     "name": "obernard/linkedlist",
     "type": "library",
     "description": "Data Storage based on linkedlist",
-    "keywords": ["LinkedList", "Collection", "Iterator"],
+    "keywords": ["LinkedList", "Collection", "Iterator", "SinglyLinkedList", "DoubledLinkedList"],
     "license": "MIT",
   
     "authors": [
@@ -30,5 +30,5 @@
       "phpunit/phpunit": "~9.0"
     },
   
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
   }

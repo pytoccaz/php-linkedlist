@@ -11,17 +11,17 @@ namespace  Obernard\LinkedList;
 
 
 /**
- * Item class defines a concrete item inside a List  
+ * Node class defines a concrete node inside a List  
  * 
- *  $this->next is arbitrary considered at the right of the item.
- *  $this->prev is arbitrary considered at the left of the item.
+ *  $this->next is arbitrary considered at the right of the node.
+ *  $this->prev is arbitrary considered at the left of the node.
  * 
  * @author Olivier Bernard
 */   
-final class Item extends AbstractItem {
+class Node extends AbstractNode {
 
     /**
-     * @var mixed data stored in a FiloList item.
+     * @var mixed data stored in a FiloList node.
      * 
      */
     public $data ;  
@@ -33,7 +33,7 @@ final class Item extends AbstractItem {
     
 
     /**
-     * IterableItemInterface getKey method's implementation
+     * IterableNodeInterface getKey method's implementation
      * Returns the iterator index position as key when iterated 
      * @param int $index 
      * 
@@ -43,7 +43,7 @@ final class Item extends AbstractItem {
     }
 
     /**
-     * IterableItemInterface getValue method's implementation
+     * IterableNodeInterface getValue method's implementation
      * Returns the data property as value when iterated 
      * @param int $index 
      * 

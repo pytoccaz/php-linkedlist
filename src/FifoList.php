@@ -24,7 +24,7 @@ final class FiFoList extends AbstractDoublyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->ilpush(new Item($data));
+        $this->ilpush(new Node($data));
         return $this;
     }
 

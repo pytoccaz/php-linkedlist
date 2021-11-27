@@ -1,4 +1,6 @@
 <?php
+
+
 /*
  * This file is part of the Obernard package.
  *
@@ -7,7 +9,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace  Obernard\LinkedList;
+namespace Obernard\LinkedList\Tests\Helpers;
+
+use Obernard\LinkedList\AbstractDoublyLinkedList;
+use Obernard\LinkedList\Node;
 
 /**
  * 
@@ -26,7 +31,7 @@ final class TailToHeadFiFoList extends AbstractDoublyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->irpush(new Item($data));
+        $this->irpush(new Node($data));
         return $this;
     }
 

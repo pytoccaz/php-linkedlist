@@ -4,15 +4,15 @@ CHANGELOG
 0.1.0
 -----
 
- * added `LinkItemException` class 
- * added `AbstractItem` class 
- * added `Item` class 
+ * added `LinkNodeException` class 
+ * added `AbstractNode` class 
+ * added `Node` class 
  * added `AbstractCommonList` class  
  * added `AbstractSinglyLinkedList` class 
  * added `AbstractDoubledLinkedList` class 
  * added `FiloList` class
  * added `FifoList` class
- * added `IterableItemInterface` class
+ * added `IterableNodeInterface` class
  * Tested classes
 
  

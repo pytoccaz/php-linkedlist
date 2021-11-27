@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\LinkItemException;
+use Obernard\LinkedList\Exception\LinkNodeException;
 
 /**
  * 
@@ -22,16 +22,16 @@ abstract class AbstractCommonList implements \Iterator {
 
 
     /**
-     * Points to the "left most" item
-     * @var AbstractItem|null
+     * Points to the "left most" node
+     * @var AbstractNode|null
      */
     protected $head = null; 
 
     /**
-     * Points to the item returned during iteration.
-     * @var AbstractItem|null
+     * Points to the node returned during iteration.
+     * @var AbstractNode|null
      */
-    private $current = null; // points to the item returned during iteration
+    private $current = null; // points to the node returned during iteration
     
     /**
      * @var int the iterator index position.
@@ -40,12 +40,12 @@ abstract class AbstractCommonList implements \Iterator {
 
 
     /**
-     * @var int the number of items in the list
+     * @var int the number of nodes in the list
      */
     protected $length = 0;
 
     /**
-     * Returns the number of items inside the list.
+     * Returns the number of nodes inside the list.
      * @return int 
      */
     public function length():int {
@@ -61,11 +61,11 @@ abstract class AbstractCommonList implements \Iterator {
     }
 
     /**
-     * Returns the the head item (ie the left most item)
+     * Returns the the head node (ie the left most node)
      * Mainly used for internal logic.
-     * @return AbstractItem|null
+     * @return AbstractNode|null
      */
-    public function ihead():?AbstractItem 
+    public function ihead():?AbstractNode 
     {
         return $this->head;
     }
@@ -77,8 +77,8 @@ abstract class AbstractCommonList implements \Iterator {
     public function toArray():array 
     {
         $ar = [];
-        foreach ($this as $item) {
-            $ar[] = $item;
+        foreach ($this as $node) {
+            $ar[] = $node;
         }
         return $ar;
     }
@@ -86,7 +86,7 @@ abstract class AbstractCommonList implements \Iterator {
 
     /**
     *   foreach Iterator functions implementation
-    *   !! Be carefull: key() and current() methods'logic is left to the item class !!  
+    *   !! Be carefull: key() and current() methods'logic is left to the node class !!  
     */
 
     public function rewind() {
@@ -104,17 +104,17 @@ abstract class AbstractCommonList implements \Iterator {
     }
 
     /**
-    *  !! Be carefull: key() and current() methods'logic is left to the item class
+    *  !! Be carefull: key() and current() methods'logic is left to the node class
     *     through its getKey and getValue methods !!
     *   
     */
 
     /**
-     * Returns the key associated with an item when the list is iterated.
-     * Even if the logic is left to the item final class, the method is kind 
-     *  enough to pass the iterator index to the item. 
+     * Returns the key associated with a node when the list is iterated.
+     * Even if the logic is left to the node final class, the method is kind 
+     *  enough to pass the iterator index to the node. 
      * @param int index position of the iterator.
-     * @return mixed key associated with the iterated item.
+     * @return mixed key associated with the iterated node.
      */
     public function key() {
          if (!$this->valid())
@@ -124,9 +124,9 @@ abstract class AbstractCommonList implements \Iterator {
     }
 
     /**
-     * Returns the value associated with an item when the list is iterated.
-     * The logic is left to the item final class.
-     * @return mixed value associated with the iterated item.
+     * Returns the value associated with a node when the list is iterated.
+     * The logic is left to the node final class.
+     * @return mixed value associated with the iterated node.
      */  
     public function current() {
         return $this->current->getValue() ;

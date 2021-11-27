@@ -9,18 +9,18 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\LinkItemException;
+use Obernard\LinkedList\Exception\LinkNodeException;
 
 /**
  * 
  * Singly linked-list abstract class.
  * 
- * An item in the list is linked to a next item, arbitrary assumed at its right.
+ * A node in the list is linked to a next node, arbitrary assumed at its right.
  *  
- * By definition, the right most item (ie the last item) is not linked to a next item.
+ * By definition, the right most node (ie the last node) is not linked to a next node.
  * 
- * The link between two items is an unidirectionnal relation:
- *   Whatever the $item index is inside the list, $item->prev() === null.    
+ * The link between two nodes is an unidirectionnal relation:
+ *   Whatever the $node index is inside the list, $node->prev() === null.    
  * 
  * ipush() and ipop() methods makes AbstractSinglyLinkedList very similar
  *  to first-in/last-out queue-list.  
@@ -32,37 +32,37 @@ use Obernard\LinkedList\Exception\LinkItemException;
 abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
   
     /**
-     * Pushes an item at the head of the list. 
+     * Pushes a node at the head of the list. 
      * @return $this
      */
-    public function ipush(AbstractItem $item):self {
-        if ($item->next())
-            throw new LinkItemException('Next item is already set !');
+    public function ipush(AbstractNode $node):self {
+        if ($node->next())
+            throw new LinkNodeException('Next node is already set !');
 
-         // substitute head item with the new item
-        $item->setNext($this->head);
-        $this->head = $item;
+         // substitute head node with the new node
+        $node->setNext($this->head);
+        $this->head = $node;
 
         $this->length+=1; // increment length
         return $this;
     }
 
     /**
-     * Pops head item from the list.
-     * The poped item is detached from its next Item.
-     * @return AbstractItem|null poped item 
+     * Pops head node from the list.
+     * The poped node is detached from its next Node.
+     * @return AbstractNode|null poped node 
      */
-    public function ipop():?AbstractItem  
+    public function ipop():?AbstractNode  
     {
          if ($this->length == 0)
             return null;
          else {
-            $itemToPop = $this->head;
+            $nodeToPop = $this->head;
             $this->head = $this->head->next();
             $this->length-=1; // deincrement length
  
-            // detach poped item from its brother next item
-            return $itemToPop->setNext(null);
+            // detach poped node from its brother next node
+            return $nodeToPop->setNext(null);
          }
     }
    

@@ -24,7 +24,7 @@ final class FiloList extends AbstractSinglyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->ipush(new Item($data));
+        $this->ipush(new Node($data));
         return $this;
     }
 

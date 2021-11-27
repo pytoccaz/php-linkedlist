@@ -6,26 +6,27 @@
 namespace Obernard\LinkedList\Tests;
 use  Obernard\LinkedList\FiloList;
 use  Obernard\LinkedList\FifoList;
-use  Obernard\LinkedList\TailToHeadFiFoList;
-use Obernard\LinkedList\Item;
+use Obernard\LinkedList\Node;
 use PHPUnit\Framework\TestCase;
+use Obernard\LinkedList\Tests\Helpers\TailToHeadFiFoList;
+
 
 class CollectionTest extends TestCase 
 {
 
     public function nonEmptyFifoListAlwaysVerify($list) {
-        $this->assertInstanceOf(Item::class, $list->ihead(), "The head item.");
-        $this->assertInstanceOf(Item::class, $list->itail(), "The tail item.");
+        $this->assertInstanceOf(Node::class, $list->ihead(), "The head node.");
+        $this->assertInstanceOf(Node::class, $list->itail(), "The tail node.");
     
-        $this->assertEquals($list->ihead()->prev(), null, "The head item has no previous item.");
+        $this->assertEquals($list->ihead()->prev(), null, "The head node has no previous node.");
     
-        $this->assertInstanceOf(Item::class, $list->ihead()->next(), "The head item has a next item.");
+        $this->assertInstanceOf(Node::class, $list->ihead()->next(), "The head node has a next node.");
     
-        $this->assertEquals($list->itail()->next(), null, "The tail item has no next item.");
-        $this->assertInstanceOf(Item::class, $list->itail()->prev(), "The tail item has a previous item.");
+        $this->assertEquals($list->itail()->next(), null, "The tail node has no next node.");
+        $this->assertInstanceOf(Node::class, $list->itail()->prev(), "The tail node has a previous node.");
     
-        $this->assertEquals($list->itail()->isLast(), true, "The tail item is the last one.");
-        $this->assertEquals($list->ihead()->isFirst(), true, "The head item is the first one.");
+        $this->assertEquals($list->itail()->isLast(), true, "The tail node is the last one.");
+        $this->assertEquals($list->ihead()->isFirst(), true, "The head node is the first one.");
         
     } 
 
@@ -46,7 +47,7 @@ class CollectionTest extends TestCase
   
     $list->add(1)->add(2)->add(3);
 
-    $this->assertEquals(3, $list->length(), "The list contains 3 items.");
+    $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
 
     $this->assertEquals( [3,2,1], $list->toArray(), "Expected toArray() return."); 
 
@@ -58,17 +59,17 @@ class CollectionTest extends TestCase
     $this->assertEquals($list->toArray(), $ar, "Comparison of toArray and foreach results."); 
 
 
-    // pops all the items
+    // pops all the nodes
     $i=0;
     $lengthBeforePops = $list->length();
     $arrayOfPopedValues = [];
 
     while ($list->length()) {
         $i++;
-        $popedItem = $list->ipop();
-        $arrayOfPopedValues[] = $popedItem->getValue();
-        $this->assertEquals($popedItem->next(), null, "Poped item has no next item."); 
-        $this->assertEquals($popedItem->prev(), null, "Poped item has no prev item."); 
+        $popedNode = $list->ipop();
+        $arrayOfPopedValues[] = $popedNode->getValue();
+        $this->assertEquals($popedNode->next(), null, "Poped node has no next node."); 
+        $this->assertEquals($popedNode->prev(), null, "Poped node has no prev node."); 
     }
     $this->assertEquals($list->length(), 0, "1/ The list is empty."); 
     $this->assertEquals($list->isEmpty(), true, "1/ The list is empty.");
@@ -99,34 +100,34 @@ class CollectionTest extends TestCase
      * Test left push (internal ilpush method).
      */
 
-    // A first item is pushed
+    // A first node is pushed
     $list->add(1);
    
-    $this->assertEquals(1, $list->length(), "The list contains 1 item.");
+    $this->assertEquals(1, $list->length(), "The list contains 1 node.");
 
-    $this->assertInstanceOf(Item::class, $list->ihead(), "The head item.");
+    $this->assertInstanceOf(Node::class, $list->ihead(), "The head node.");
 
-    $this->assertEquals($list->ihead(), $list->itail(), "The item is at both head and tail positions.");
+    $this->assertEquals($list->ihead(), $list->itail(), "The node is at both head and tail positions.");
 
-    $this->assertEquals($list->ihead()->prev(), null, "The item has no previous item.");
+    $this->assertEquals($list->ihead()->prev(), null, "The node has no previous node.");
 
-    $this->assertEquals($list->ihead()->next(), null, "The item has no next item.");
+    $this->assertEquals($list->ihead()->next(), null, "The node has no next node.");
  
-     // A second item is pushed
+     // A second node is pushed
     $list->add(2);
     $this->nonEmptyFifoListAlwaysVerify($list);
-    $this->assertEquals(2, $list->length(), "The list contains 2 items.");
+    $this->assertEquals(2, $list->length(), "The list contains 2 nodes.");
 
-    $this->assertEquals($list->itail()->prev(), $list->ihead(), "The head item is the tail previous item.");
-    $this->assertEquals($list->ihead()->next(), $list->itail(), "The tail item is the head next item.");
+    $this->assertEquals($list->itail()->prev(), $list->ihead(), "The head node is the tail previous node.");
+    $this->assertEquals($list->ihead()->next(), $list->itail(), "The tail node is the head next node.");
 
     $this->assertEquals($list->ihead()->getValue(), 2, "data are pushed at the head.");
     $this->assertEquals($list->itail()->getValue(), 1, "data pushes shift data to toward the tail.");
 
-     // A third item is pushed
+     // A third node is pushed
      $list->add(3);
      $this->nonEmptyFifoListAlwaysVerify($list);
-     $this->assertEquals(3, $list->length(), "The list contains 3 items.");
+     $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
      $this->assertEquals($list->ihead()->getValue(), 3, "data are pushed at the head.");
      $this->assertEquals($list->ihead()->next()->getValue(), 2, "1/ data pushes shift data toward the tail.");
      $this->assertEquals($list->itail()->getValue(), 1, "2/ data pushes shift data toward the tail.");
@@ -141,17 +142,17 @@ class CollectionTest extends TestCase
     $this->assertEquals($list->toArray(), $ar, "Comparison of toArray and foreach results."); 
 
 
-    // pops all the items
+    // pops all the nodes
     $i=0;
     $lengthBeforePops = $list->length();
     $arrayOfPopedValues = [];
 
     while ($list->length()) {
         $i++;
-        $popedItem = $list->irpop();
-        $arrayOfPopedValues[] = $popedItem->getValue();
-        $this->assertEquals($popedItem->next(), null, "Poped item has no next item."); 
-        $this->assertEquals($popedItem->prev(), null, "Poped item has no prev item."); 
+        $popedNode = $list->irpop();
+        $arrayOfPopedValues[] = $popedNode->getValue();
+        $this->assertEquals($popedNode->next(), null, "Poped node has no next node."); 
+        $this->assertEquals($popedNode->prev(), null, "Poped node has no prev node."); 
     }
     $this->assertEquals($list->length(), 0, "1/ The list is empty."); 
     $this->assertEquals($list->isEmpty(), true, "1/ The list is empty.");
@@ -184,37 +185,37 @@ class CollectionTest extends TestCase
      * Test left push (internal ilpush method).
      */
 
-    // A first item is pushed
+    // A first node is pushed
     $list->add(1);
    
-    $this->assertEquals(1, $list->length(), "The list contains 1 item.");
+    $this->assertEquals(1, $list->length(), "The list contains 1 node.");
 
-    $this->assertInstanceOf(Item::class, $list->ihead(), "The head item.");
+    $this->assertInstanceOf(Node::class, $list->ihead(), "The head node.");
 
-    $this->assertEquals($list->ihead(), $list->itail(), "The item is at both head and tail positions.");
+    $this->assertEquals($list->ihead(), $list->itail(), "The node is at both head and tail positions.");
 
-    $this->assertEquals($list->ihead()->prev(), null, "The item has no previous item.");
+    $this->assertEquals($list->ihead()->prev(), null, "The node has no previous node.");
 
-    $this->assertEquals($list->ihead()->next(), null, "The item has no next item.");
+    $this->assertEquals($list->ihead()->next(), null, "The node has no next node.");
  
-     // A second item is pushed
+     // A second node is pushed
     $list->add(2);
     $this->nonEmptyFifoListAlwaysVerify($list);
-    $this->assertEquals(2, $list->length(), "The list contains 2 items.");
+    $this->assertEquals(2, $list->length(), "The list contains 2 nodes.");
 
     $this->assertEquals([1,2], $list->toArray(), "Expected toArray() return.");
  
-    $this->assertEquals($list->itail()->prev(), $list->ihead(), "The head item is the tail previous item.");
-    $this->assertEquals($list->ihead()->next(), $list->itail(), "The tail item is the head next item.");
+    $this->assertEquals($list->itail()->prev(), $list->ihead(), "The head node is the tail previous node.");
+    $this->assertEquals($list->ihead()->next(), $list->itail(), "The tail node is the head next node.");
 
 
     $this->assertEquals($list->itail()->getValue(), 2, "data are pushed at the tail.");
     $this->assertEquals($list->ihead()->getValue(), 1, "data pushes shift data to toward the head.");
 
-     // A third item is pushed
+     // A third node is pushed
      $list->add(3);
      $this->nonEmptyFifoListAlwaysVerify($list);
-     $this->assertEquals(3, $list->length(), "The list contains 3 items.");
+     $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
      $this->assertEquals($list->itail()->getValue(), 3, "data are pushed at the tail.");
 
      $this->assertEquals([1,2,3], $list->toArray(), "Expected toArray() return.");
@@ -231,17 +232,17 @@ class CollectionTest extends TestCase
     $this->assertEquals($list->toArray(), $ar, "Comparison of toArray and foreach results."); 
 
 
-    // pops all the items
+    // pops all the nodes
     $i=0;
     $lengthBeforePops = $list->length();
     $arrayOfPopedValues = [];
 
     while ($list->length()) {
         $i++;
-        $popedItem = $list->ilpop();
-        $arrayOfPopedValues[] = $popedItem->getValue();
-        $this->assertEquals($popedItem->next(), null, "Poped item has no next item."); 
-        $this->assertEquals($popedItem->prev(), null, "Poped item has no prev item."); 
+        $popedNode = $list->ilpop();
+        $arrayOfPopedValues[] = $popedNode->getValue();
+        $this->assertEquals($popedNode->next(), null, "Poped node has no next node."); 
+        $this->assertEquals($popedNode->prev(), null, "Poped node has no prev node."); 
     }
     $this->assertEquals($list->length(), 0, "1/ The list is empty."); 
     $this->assertEquals($list->isEmpty(), true, "1/ The list is empty.");

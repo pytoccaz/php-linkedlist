@@ -12,7 +12,7 @@ composer require obernard/linkedlist
 
 Final classes like `FiloList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoublyLinkedList` offers much more coding potentials.
 
-Create an empty list and add items.
+Create an empty list and add nodes.
 ```php
 $list = new Obernard\LinkedList\FiloList;
 
@@ -26,11 +26,11 @@ foreach ($list as $key, $value) {
 
 $l = $list->length() // 3
 
-$item = $list->pop(); // ['test1', 'test2']
+$node = $list->pop(); // ['test1', 'test2']
 
 $l = $list->length() // 2
 
-$item = $list->pop(); // 1
+$node = $list->pop(); // 1
 
 $l = $list->length() // 1
 

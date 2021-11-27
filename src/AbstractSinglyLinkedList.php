@@ -50,7 +50,7 @@ abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
     /**
      * Pops head node from the list.
      * The poped node is detached from its next Node.
-     * @return AbstractNode|null poped node 
+     * @return AbstractSinglyLinkedNode|null poped node 
      */
     public function ipop():?AbstractNode  
     {

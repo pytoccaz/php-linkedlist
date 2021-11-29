@@ -92,7 +92,7 @@ If you want to iterate over Node objects, just make `getValue` return `$this`.
 
 - `getKey` method determines what is returned as key when iterating the list. It's argument `$index` is binded with the iterator position index. So an obvious classical solution is to make `getKey` returns `$index`. But you can return whatever suites your needs. 
 
-@see AbstractCommonList key() and current() methods to see how the magic works.
+@see `AbstractCommonList` `key()` and `current()` methods to see how the magic works.
 
 
 ## Contributing

@@ -7,7 +7,6 @@ namespace Obernard\LinkedList\Tests;
 use  Obernard\LinkedList\Collection\FiloList;
 use  Obernard\LinkedList\Collection\FifoList;
 use Obernard\LinkedList\Collection\FifoNode;
-use Obernard\LinkedList\Collection\FiloNode;
 use PHPUnit\Framework\TestCase;
 use Obernard\LinkedList\Tests\Helpers\TailToHeadFiFoList;
 
@@ -15,7 +14,7 @@ use Obernard\LinkedList\Tests\Helpers\TailToHeadFiFoList;
 class CollectionTest extends TestCase 
 {
 
-    public function nonEmptyFifoListAlwaysVerify($list) {
+    private function nonEmptyFifoListAlwaysVerify($list) {
         $this->assertInstanceOf(FifoNode::class, $list->headn(), "The head node.");
         $this->assertInstanceOf(FifoNode::class, $list->tailn(), "The tail node.");
     
@@ -54,6 +53,7 @@ class CollectionTest extends TestCase
     $this->assertTrue($list->isEmpty(), "List is empty."); 
   
     $list->add(1)->add(2)->add(3);
+    $this->assertEquals($list->headn()->rrank(), $list->length()-1, "Head node rrank always equals length - 1.");
 
     $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
 

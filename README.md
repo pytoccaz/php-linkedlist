@@ -74,7 +74,7 @@ class MyNode extends AbstractSinglyNode {
 
 $list= new MyList();
 
-$list->rpushn(new MyNode("test1"))->rpushn(new MyNode("test2"));
+$list->lpushn(new MyNode("test1"))->lpushn(new MyNode("test2"));
 
 foreach ($list as $value) {
     // do something with $value string (returned by MyNode->getValue())

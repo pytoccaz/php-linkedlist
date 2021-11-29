@@ -76,20 +76,23 @@ $list= new MyList();
 
 $list->lpushn(new MyNode("test1"))->lpushn(new MyNode("test2"));
 
-foreach ($list as $value) {
-    // do something with $value string (returned by MyNode->getValue())
+foreach ($list as $key => $value) {
+    // do something with $value string (returned by MyNode->getValue()) and $key (MyNode->getKey())
 }
 
 
 ```
-
 A concrete Node class has to implement IterableNodeInterface `getKey` and `getValue` methods. 
 
-`getValue` method determines what is returned when iterating the list.
+- `getValue` method determines what is returned as value when iterating the list. 
 
 In above, example, we decide that `foreach` statement iterate over `$data` node property.
 
 If you want to iterate over Node objects, just make `getValue` return `$this`.
+
+- `getKey` method determines what is returned as key when iterating the list. It's argument `$index` is binded with the iterator position index. So an obvious classical solution is to make `getKey` returns `$index`. But you can return whatever suites your needs. 
+
+@see AbstractCommonList key() and current() methods to see how the magic works.
 
 
 ## Contributing

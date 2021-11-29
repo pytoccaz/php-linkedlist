@@ -40,7 +40,7 @@ $l = $list->length() // 1
 
 Abstract singly-linked list supports the use of abstract doubly-linked nodes but as a good practice use singly linked nodes inside singly-linked lists.
 
-Your concrete list classe links instances of your concrete node classe. Like FifoList class, they may create themselves node objects or may not.   
+Your concrete list class links instances of your concrete node classe. Like FifoList class, concrete list class may create node objects or may not.   
 
 In this example, `MyList` class does not create nodes by itself:
 
@@ -82,7 +82,7 @@ foreach ($list as $key => $value) {
 
 
 ```
-A concrete Node class has to implement IterableNodeInterface `getKey` and `getValue` methods. 
+A concrete Node class has to implement `IterableNodeInterface` `getKey` and `getValue` methods. 
 
 - `getValue` method determines what is returned as value when iterating the list. 
 

@@ -14,7 +14,7 @@ Final classes like `FiloList` are given as examples of implementation of abstrac
 
 Create an empty list and add nodes.
 ```php
-$list = new Obernard\LinkedList\FiloList;
+$list = new Obernard\LinkedList\Collection\FiloList;
 
 $list->add('hello');
 $list->add(1);
@@ -35,6 +35,18 @@ $node = $list->pop(); // 1
 $l = $list->length() // 1
 
 ```
+
+## Usage of Abstract classes 
+
+
+
+
+
+
+
+
+
+
 
 ## Contributing
 

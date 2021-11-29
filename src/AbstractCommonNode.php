@@ -11,23 +11,25 @@ namespace  Obernard\LinkedList;
 
 
 /**
- *  AbstractNode is the top class of SinglyLinkedListNode and by this way of DoublyLinkedListNode
+ *  AbstractNode class defines a node inside a SinglyLinkedList or a DoublyLinkedList
+ *  Inside DoublyLinkedList, a node is linked to a next node and a previous node. 
  *  Inside SinglyLinkedList, a node is linked to a next node only. 
  * 
  *  - $this->next is arbitrary considered at the right of the node.
+ *  - $this->prev is arbitrary considered at the left of the node.
  * 
  *  Final Node class must implement 2 methods:
  *  - getValue that defines the values retuned during list iteration.
  *  - getKey that defines the key returned during list iteration.
  * 
- * AbstractNode and all abstract node classes do not make any assumption about data associated with final Node classes.
+ * AbstractNode makes no assumption about data associated with final Node classes.
  * 
  * @author Olivier Bernard
 */   
 abstract class AbstractNode implements IterableNodeInterface {
 
  
-    protected ?AbstractNode $next = null; 
+    private ?AbstractNode $next = null; 
 
     
     /**
@@ -37,6 +39,8 @@ abstract class AbstractNode implements IterableNodeInterface {
     public function next():?AbstractNode {
         return $this->next;
     }
+
+ 
 
     /**
      * Sets the next node. 
@@ -49,13 +53,15 @@ abstract class AbstractNode implements IterableNodeInterface {
 
 
     /**
-     * Is the node last inside a singly-linked List ?
+     * Is the node last inside a List ?
      * @return bool
      */
     public function isLast():bool {
         return $this->next === null;
     }
 
+  
+ 
     /**
      *  Returns the node's rank beginning at right (ie at the end).
      *  @return int 
@@ -70,4 +76,5 @@ abstract class AbstractNode implements IterableNodeInterface {
         }
     }
 
+ 
 }

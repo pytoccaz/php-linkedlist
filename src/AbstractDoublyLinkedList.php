@@ -28,16 +28,16 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
   
     /**
      * Points to the "right most" node
-     * @var AbstractNode|null
+     * @var AbstractDoublyLinkedNode|null
      */
     protected $tail = null; 
 
     /**
      * Returns the the tail node (ie the right most node)
      * Mainly used for internal logic.
-     * @return AbstractNode|null
+     * @return AbstractDoublyLinkedNode|null
      */
-    public function itail():?AbstractNode 
+    public function tailn():?AbstractDoublyLinkedNode 
     {
         return $this->tail;
     }
@@ -47,7 +47,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      * Pushes a node at the left of the list. 
      * @return $this
      */
-    public function ilpush(AbstractNode $node):self {
+    public function lpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
             throw new LinkNodeException('Next node is already set !');
         
@@ -78,9 +78,9 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
     /**
      * Pops head node from the list.
      * The poped node is detached from its next Node.
-     * @return AbstractNode|null poped node 
+     * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function ilpop():?AbstractNode 
+    public function lpopn():?AbstractDoublyLinkedNode 
     {
 
         // if the list is empty just returns null 
@@ -114,7 +114,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      * Pushes a node at the right of the list. 
      * @return $this
      */
-    public function irpush(AbstractNode $node):self {
+    public function rpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
             throw new LinkNodeException('Next node is already set !');
         
@@ -145,9 +145,9 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
     /**
      * Pops tail node from the list.
      * The poped node is detached from its previous Node.
-     * @return AbstractNode|null poped node 
+     * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function irpop():?AbstractNode 
+    public function rpopn():?AbstractDoublyLinkedNode 
     {
 
         // if the list is empty just returns null 

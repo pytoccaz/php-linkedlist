@@ -20,22 +20,21 @@ use Obernard\LinkedList\Exception\LinkNodeException;
  * By definition, the right most node (ie the last node) is not linked to a next node.
  * 
  * The link between two nodes is an unidirectionnal relation:
- *   Whatever the $node index is inside the list, $node->prev() === null.    
  * 
- * ipush() and ipop() methods makes AbstractSinglyLinkedList very similar
+ * lpushn() and lpopn() methods makes AbstractSinglyLinkedList similar
  *  to first-in/last-out queue-list.  
  * 
  * 
  * @author Olivier Bernard
  */   
 
-abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
+ abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
   
     /**
      * Pushes a node at the head of the list. 
      * @return $this
      */
-    public function ipush(AbstractNode $node):self {
+    public function lpushn(AbstractSinglyLinkedNode $node):self {
         if ($node->next())
             throw new LinkNodeException('Next node is already set !');
 
@@ -52,7 +51,7 @@ abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
      * The poped node is detached from its next Node.
      * @return AbstractSinglyLinkedNode|null poped node 
      */
-    public function ipop():?AbstractNode  
+    public function lpopn():?AbstractSinglyLinkedNode  
     {
          if ($this->length == 0)
             return null;

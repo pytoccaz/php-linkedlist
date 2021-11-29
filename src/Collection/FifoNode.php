@@ -7,9 +7,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace  Obernard\LinkedList;
+namespace  Obernard\LinkedList\Collection;
 
-
+use  Obernard\LinkedList\AbstractDoublyLinkedNode;
 /**
  * Node class defines a concrete node inside a List  
  * 
@@ -18,7 +18,7 @@ namespace  Obernard\LinkedList;
  * 
  * @author Olivier Bernard
 */   
-class Node extends AbstractNode {
+class FifoNode extends AbstractDoublyLinkedNode {
 
     /**
      * @var mixed data stored in a FiloList node.

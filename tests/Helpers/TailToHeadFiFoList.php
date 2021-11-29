@@ -12,7 +12,7 @@
 namespace Obernard\LinkedList\Tests\Helpers;
 
 use Obernard\LinkedList\AbstractDoublyLinkedList;
-use Obernard\LinkedList\Node;
+use Obernard\LinkedList\Collection\FifoNode;
 
 /**
  * 
@@ -31,7 +31,7 @@ final class TailToHeadFiFoList extends AbstractDoublyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->irpush(new Node($data));
+        $this->rpushn(new FifoNode($data));
         return $this;
     }
 
@@ -41,7 +41,7 @@ final class TailToHeadFiFoList extends AbstractDoublyLinkedList {
      */
     public function pop() 
     {
-         return $this->ilpop()->getValue();
+         return $this->lpopn()->getValue();
     }
 
 };

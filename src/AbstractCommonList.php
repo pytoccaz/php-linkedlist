@@ -65,7 +65,7 @@ abstract class AbstractCommonList implements \Iterator {
      * Mainly used for internal logic.
      * @return AbstractNode|null
      */
-    public function ihead():?AbstractNode 
+    public function headn():?AbstractNode 
     {
         return $this->head;
     }

@@ -30,6 +30,10 @@
       "phpunit/phpunit": "^9.3",
         "symfony/stopwatch": "5.4.x-dev"
     },
-  
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit -v"
+        ]
+    },
     "minimum-stability": "dev"
   }

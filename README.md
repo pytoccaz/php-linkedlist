@@ -94,6 +94,10 @@ If you want to iterate over Node objects, just make `getValue` return `$this`.
 
 @see `AbstractCommonList` `key()` and `current()` methods to see how the magic works.
 
+## Tests
+
+Run `composer test`.
+
 
 ## Contributing
 

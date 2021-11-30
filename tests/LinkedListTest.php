@@ -34,6 +34,9 @@ class CollectionTest extends TestCase
         $this->assertEquals($list->tailn()->rrank(), 0, "Tail node rrank is 0");
         $this->assertEquals($list->headn()->lrank(), 0, "Head node lrank is 0");
 
+
+        $this->assertEquals($list->length(), count($list), "List obj are countable");
+
         
     } 
 

@@ -9,7 +9,6 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\LinkNodeException;
 
 /**
  * 
@@ -18,7 +17,7 @@ use Obernard\LinkedList\Exception\LinkNodeException;
  * @author Olivier Bernard
  */   
 
-abstract class AbstractCommonList implements \Iterator {
+abstract class AbstractCommonList implements \Iterator, \Countable {
 
 
     /**
@@ -83,6 +82,12 @@ abstract class AbstractCommonList implements \Iterator {
         return $ar;
     }
 
+    /**
+    *   Countable interface implementation
+    */
+    public function count():int {
+        return $this->length;
+    }
 
     /**
     *   foreach Iterator functions implementation

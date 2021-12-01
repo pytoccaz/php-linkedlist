@@ -22,7 +22,7 @@ use Obernard\LinkedList\Exception\LinkNodeException;
  * The link between two nodes is an unidirectionnal relation:
  * 
  * lpushn() and lpopn() methods makes AbstractSinglyLinkedList similar
- *  to first-in/last-out queue-list.  
+ *  to first-in/last-out queue-lists.  
  * 
  * 
  * @author Olivier Bernard

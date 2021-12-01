@@ -16,12 +16,13 @@ namespace  Obernard\LinkedList;
  * 
  *  - $this->next is arbitrary considered at the right of the node.
  * 
- *  Final Node classes must implement 2 methods:
+ *  Final Node class must implement 2 methods (@see IterableNodeInterface):
  *  - getValue that defines the values retuned during list iteration.
  *  - getKey that defines the key returned during list iteration.
  * 
- * AbstractSinglyLinkedNode makes no assumption about data associated with final Node classes.
- * 
+ * Apart those 2 IterableNodeInterface methods, AbstractDoublyLinkedNode does not 
+ * impose contraints about concrete Node classes properties.
+ *   
  * @author Olivier Bernard
 */   
 abstract class AbstractSinglyLinkedNode extends AbstractNode {

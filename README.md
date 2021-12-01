@@ -86,7 +86,7 @@ A concrete Node class has to implement `IterableNodeInterface` `getKey` and `get
 
 - `getValue` method determines what is returned as value when iterating the list. 
 
-In above, example, we decide that `foreach` statement iterate over `$data` node property.
+In above example, we decide that `foreach` statement iterate over `$data` node property.
 
 If you want to iterate over Node objects, just make `getValue` return `$this`.
 

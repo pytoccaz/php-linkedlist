@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.1 2021-12-01
+-----
+ * Suppression of unused class AbstactCommmonNode
+
+
 1.1 2021-11-30
 -----
  * List classes implement Countable interface

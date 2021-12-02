@@ -33,14 +33,6 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
 
     
     /**
-     * Returns the following node (the node at $this right).
-     * @return AbstractDoublyLinkedNode|null
-     */
-    public function next():?AbstractDoublyLinkedNode {
-        return $this->next;
-    }
-
-    /**
      * Returns the previous node (the node at $this left). 
      * @return AbstractDoublyLinkedNode|null
      */
@@ -75,13 +67,14 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
 
     /**
      *  Returns the rank beginning at left (ie at the beginning).
+     *  !! Time complexity is O(n) !!
      *  @return int 
      */
     public function lrank():?int {
-        if ($this->isFirst())  
+        if ($this->isFirst()) // if you Node is the most-left node just say 0 
             return 0;
         else {
-            // ask for your brother at right and increment its rank.
+            // just ask your previous node for its rank and increment 
             $prevNodeRrank=$this->prev->lrank();    
             return ++$prevNodeRrank; 
         }

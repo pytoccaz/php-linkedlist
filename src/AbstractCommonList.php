@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-
+use Obernard\LinkedList\Exception\ListException;
 /**
  * 
  * Defines common properties and methods for all other List classes.
@@ -64,9 +64,20 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * Mainly used for internal logic.
      * @return AbstractNode|null
      */
-    public function headn():?AbstractNode 
+    public function headn($offset= 0):?AbstractNode 
     {
-        return $this->head;
+        if ($offset === 0)
+            return $this->head;
+        
+        if ($offset >=1 AND $offset <= $this->length)
+            return $this->head->next($offset);
+
+        if ($offset < 0) 
+            throw (new ListException("Offset is not a positive integer!"));
+    
+        if ($offset > 0) 
+            throw (new ListException("Offset is out off range!"));
+
     }
 
     /**

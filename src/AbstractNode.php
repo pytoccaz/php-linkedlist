@@ -9,18 +9,20 @@
  */
 namespace  Obernard\LinkedList;
 
+use Obernard\LinkedList\Exception\NodeException;
 
 /**
- *  AbstractNode is the top class of SinglyLinkedListNode and by this way of DoublyLinkedListNode
- *  Inside SinglyLinkedList, a node is linked to a next node only. 
+ * AbstractNode is the top class of SinglyLinkedListNode and by this way of DoublyLinkedListNode
+ * Inside SinglyLinkedList, a node is linked to a next node only. 
  * 
- *  - $this->next is arbitrary considered at the right of the node.
+ * - $this->next is arbitrary considered at the right of the node.
  * 
- *  Final Node class must implement 2 methods:
- *  - getValue that defines the values retuned during list iteration.
- *  - getKey that defines the key returned during list iteration.
+ * Final Node class must implement 2 methods:
+ * - getValue that defines the values retuned during list iteration.
+ * - getKey that defines the key returned during list iteration.
  * 
- * AbstractNode and all abstract node classes do not make any assumption about data associated with final Node classes.
+ * Apart those 2 IterableNodeInterface methods, AbstractNode and all abstract node classes 
+ * do not impose contraints about concrete Node classes properties.
  * 
  * @author Olivier Bernard
 */   
@@ -32,10 +34,23 @@ abstract class AbstractNode implements IterableNodeInterface {
     
     /**
      * Returns the following node (the node at $this right).
+     * @param int $offset (optional): n'th node (beginning to $this) to return inside the list 
      * @return AbstractNode|null
      */
-    public function next():?AbstractNode {
-        return $this->next;
+    public function next(int $offset= 1):?AbstractNode {
+
+        if ($offset === 1) 
+            return $this->next;
+        
+        if ($offset <= 0) 
+            throw (new NodeException("Offset is not a strictly positive integer!"));
+
+
+        if ($this->islast())
+            throw (new NodeException("Offset out of range!"));
+
+        return $this->next->next(--$offset);
+
     }
 
     /**
@@ -58,16 +73,17 @@ abstract class AbstractNode implements IterableNodeInterface {
 
     /**
      *  Returns the node's rank beginning at right (ie at the end).
+     *  !! Time complexity is O(n) !!
      *  @return int 
      */
     public function rrank():int {
-        if ($this->isLast()) // the first entered node has rank 0
+        if ($this->isLast()) // if you Node are the most-right node just say 0
             return 0;
         else {
-            // ask for your brother at left and increment its rank
+            // just ask your next node for its rank and increment 
             $nextNodeRrank=$this->next->rrank();    
             return ++$nextNodeRrank; 
         }
     }
-
+ 
 }

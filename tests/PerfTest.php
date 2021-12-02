@@ -6,6 +6,13 @@
 
 namespace Obernard\LinkedList\Tests;
 
+ini_set('xdebug.remote_autostart', 0);
+ini_set('xdebug.remote_enable', 0);
+ini_set('xdebug.profiler_enable', 0);
+
+ini_set('xdebug.max_nesting_level=100000 ', 0);
+
+
 use Symfony\Component\Stopwatch\Stopwatch;
 
 use  Obernard\LinkedList\Collection\FiloList;
@@ -16,7 +23,7 @@ class PerfTest extends TestCase
     public function testPerf()
     {
 
-        $nNode = 50000;
+        $nNode = 200000;
 
         print("Singly-linked Performance report ().\n");
         print("==============================.\n");
@@ -41,6 +48,7 @@ class PerfTest extends TestCase
         printf ("feed time took %s ms.\n", $feedTime);
 
         $stopwatch->start('iter');
+
         foreach ($collection as $item) {
         }
         
@@ -49,8 +57,18 @@ class PerfTest extends TestCase
         $iterTime   = $iterEvent->getDuration();
         printf ("iter time took %s ms.\n", $iterTime);
   
-        
 
+        $collection->headn($collection->length());    
+
+        $stopwatch->start('rank');
+
+        // get head rank
+        $collection->headn()->rrank();
+   
+        $rankEvent  =  $stopwatch->stop('rank');
+        $rankTime   = $rankEvent->getDuration();
+        printf ("head rank time took %s ms.\n", $rankTime);
+  
         $stopwatch->start('pop');
 
         foreach ($array as $item) {
@@ -60,9 +78,8 @@ class PerfTest extends TestCase
 
         $popEvent  = $stopwatch->stop('pop');
         $popTime   = $popEvent->getDuration();
-        printf ("pop time took %s ms.\n", $popTime);
+        printf ("pop all time took %s ms.\n", $popTime);
 
-        $this->assertTrue($popTime <=  $feedTime, "pop time lower than feed time" );
         $this->assertTrue($iterTime <= $feedTime, "iter time lower than feed time" );
     }
 }

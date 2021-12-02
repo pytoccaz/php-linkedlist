@@ -14,6 +14,6 @@ namespace Obernard\LinkedList\Exception;
 /**
  * @author Olivier Bernard
  */
-class LinkNodeException extends \InvalidArgumentException
+class NodeException extends \InvalidArgumentException
 {
 }

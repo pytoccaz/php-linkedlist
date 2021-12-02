@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\LinkNodeException;
+use Obernard\LinkedList\Exception\NodeException;
 
 /**
  * 
@@ -49,10 +49,10 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      */
     public function lpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
-            throw new LinkNodeException('Next node is already set !');
+            throw new NodeException('Next node is already set !');
         
         if ($node->prev())
-            throw new LinkNodeException('Previous node is already set !');
+            throw new NodeException('Previous node is already set !');
 
         /**
          * substitute head node with the new node
@@ -116,10 +116,10 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      */
     public function rpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
-            throw new LinkNodeException('Next node is already set !');
+            throw new NodeException('Next node is already set !');
         
         if ($node->prev())
-            throw new LinkNodeException('Previous node is already set !');
+            throw new NodeException('Previous node is already set !');
 
         /**
          * substitute tail node with the new node

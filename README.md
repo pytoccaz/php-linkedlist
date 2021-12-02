@@ -94,6 +94,46 @@ If you want to iterate over Node objects, just make `getValue` return `$this`.
 
 @see `AbstractCommonList` `key()` and `current()` methods to see how the magic works.
 
+
+## Dialogue between nodes 
+
+An interesting design pattern is to make the nodes communicate through the list. 
+
+See `AbstractNode` `rrank()` method as an example of inter-nodes communication:
+
+```php
+// AbstractNode.php
+
+    /**
+     *  Returns the node's rank beginning at right (ie at the end).
+     *  !! Time complexity is O(n) !!
+     *  @return int 
+     */
+    public function rrank():int {
+        if ($this->isLast()) // if you Node are the most-right node just say 0
+            return 0;
+        else {
+            // just ask your next node for its rank and increment 
+            $nextNodeRrank=$this->next->rrank();    
+            return ++$nextNodeRrank; 
+        }
+    }
+
+```
+
+This design pattern is based on a recursive call.
+
+The time complexity of such recursive methods is `0(n)` where `n` is the number of nodes.
+
+**If your configuration has `xdebug` module enabled, the use of such recursive function calls may raise the following error if your list length exceeds the limit of ~256:** 
+
+```
+Error: Maximum function nesting level of '256' reached, aborting!    
+```
+
+If you don't want to modify your `xdebug` config by increasing the `xdebug.max_nesting_level` setting, just don't use that pattern design for long lists.     
+
+
 ## Tests
 
 Run `composer test`.

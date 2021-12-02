@@ -37,7 +37,7 @@ class CollectionTest extends TestCase
 
         $this->assertEquals($list->length(), count($list), "List obj are countable");
 
-        
+       
     } 
 
 
@@ -56,6 +56,11 @@ class CollectionTest extends TestCase
     $this->assertTrue($list->isEmpty(), "List is empty."); 
   
     $list->add(1)->add(2)->add(3);
+
+    $this->assertEquals($list->headn(0), $list->headn(), "Get head node through headn");
+    $this->assertEquals($list->headn(1), $list->headn()->next(), "Get n'th node through headn");
+    $this->assertEquals($list->headn(2), $list->headn()->next()->next(), "Get n'th node through headn");
+    $this->assertEquals($list->headn(3), $list->headn()->next()->next()->next(), "Get n'th node through headn");
     $this->assertEquals($list->headn()->rrank(), $list->length()-1, "Head node rrank always equals length - 1.");
 
     $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
@@ -170,7 +175,6 @@ class CollectionTest extends TestCase
     $this->assertEquals($lengthBeforePops, $i, "Controles number of iterations."); 
 
     $this->assertEquals($arrayOfPopedValues, [1, 2, 3], "Poped values order"); 
-    
     
 
   }

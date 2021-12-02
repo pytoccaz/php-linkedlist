@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-
+use Obernard\LinkedList\Exception\NodeException;
 /**
  *  AbstractDoublyLinkedNode class defines a node inside a DoublyLinkedList
  *  Inside DoublyLinkedList, a node is linked to a next node and a previous node. 
@@ -33,11 +33,24 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
 
     
     /**
-     * Returns the previous node (the node at $this left). 
+     * Returns the previous node (the node at $this left) by default.
+     * Returns the n'th previous linked node depending on $offset arg.
      * @return AbstractDoublyLinkedNode|null
      */
-    public function prev():?AbstractDoublyLinkedNode {
-        return $this->prev;
+    public function prev(int $offset= 1):?AbstractDoublyLinkedNode {
+
+        if ($offset === 1) 
+            return $this->prev;
+        
+        if ($offset < 1) 
+            throw (new NodeException("Offset is not a strictly positive integer!"));
+
+
+        if ($this->isFirst())
+            throw (new NodeException("Offset out of range!"));
+
+        return $this->prev->prev(--$offset);
+
     }
 
     /**

@@ -9,8 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\NodeException;
-
+use Obernard\LinkedList\Exception\ListException;
 /**
  * 
  * Doubly-linked list abstract class.
@@ -33,26 +32,37 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
     protected $tail = null; 
 
     /**
-     * Returns the the tail node (ie the right most node)
-     * Mainly used for internal logic.
+     * Returns the tail node (ie the right most node) by default
+     * Returns the n'th previous linked node depending on $offset arg.
+     * @param int $offset 
      * @return AbstractDoublyLinkedNode|null
+     * 
      */
-    public function tailn():?AbstractDoublyLinkedNode 
+    public function tailn($offset= 0):?AbstractDoublyLinkedNode 
     {
-        return $this->tail;
+        if ($offset === 0)
+            return $this->tail;
+        
+        if ($offset >=1 AND $offset <= $this->length)
+            return $this->tail->prev($offset);
+
+        if ($offset < 0) 
+            throw (new ListException("Offset is not a positive integer!"));
+    
+        if ($offset > 0) 
+            throw (new ListException("Offset is out off range!"));
+
     }
-
-
      /**
      * Pushes a node at the left of the list. 
      * @return $this
      */
     public function lpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
-            throw new NodeException('Next node is already set !');
+            throw new ListException('The node is already linked to a next node !');
         
         if ($node->prev())
-            throw new NodeException('Previous node is already set !');
+            throw new ListException('The node is already linked to a previous node !');
 
         /**
          * substitute head node with the new node
@@ -116,10 +126,10 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      */
     public function rpushn(AbstractDoublyLinkedNode $node):self {
         if ($node->next())
-            throw new NodeException('Next node is already set !');
+            throw new ListException('The node is already linked to a next node !');
         
         if ($node->prev())
-            throw new NodeException('Previous node is already set !');
+            throw new ListException('The node is already linked to a previous node !');
 
         /**
          * substitute tail node with the new node

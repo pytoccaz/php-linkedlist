@@ -33,7 +33,7 @@ abstract class AbstractNode implements IterableNodeInterface {
 
     
     /**
-     * Returns the following node (the node at $this right).
+     * Returns the following node (the node at $this right) by default.
      * @param int $offset (optional): n'th node (beginning to $this) to return inside the list 
      * @return AbstractNode|null
      */
@@ -42,9 +42,8 @@ abstract class AbstractNode implements IterableNodeInterface {
         if ($offset === 1) 
             return $this->next;
         
-        if ($offset <= 0) 
-            throw (new NodeException("Offset is not a strictly positive integer!"));
-
+        if ($offset < 1) 
+            throw (new NodeException("Offset cannot be lower than 1!"));
 
         if ($this->islast())
             throw (new NodeException("Offset out of range!"));

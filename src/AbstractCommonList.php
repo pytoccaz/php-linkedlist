@@ -61,7 +61,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
 
     /**
      * Returns the head node (ie the left most node) by default.
-     * Returns the n'th next linked node depending on $offset arg.
+     * Returns the N'th next linked node when $offset = N with N >= 1.
      * Mainly used for internal logic.
      * @param int $offset 
      * @return AbstractNode|null

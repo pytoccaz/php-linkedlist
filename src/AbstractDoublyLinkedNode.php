@@ -34,7 +34,7 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
     
     /**
      * Returns the previous node (the node at $this left) by default.
-     * Returns the n'th previous linked node depending on $offset arg.
+     * Returns the N'th previous linked node when $offset = N with N > 1.
      * @return AbstractDoublyLinkedNode|null
      */
     public function prev(int $offset= 1):?AbstractDoublyLinkedNode {
@@ -43,7 +43,7 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
             return $this->prev;
         
         if ($offset < 1) 
-            throw (new NodeException("Offset is not a strictly positive integer!"));
+            throw (new NodeException("Offset cannot be lower than 1!"));
 
 
         if ($this->isFirst())

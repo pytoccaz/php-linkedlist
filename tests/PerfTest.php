@@ -23,10 +23,10 @@ class PerfTest extends TestCase
     public function testPerf()
     {
 
-        $nNode = 200000;
-
-        print("Singly-linked Performance report ().\n");
-        print("==============================.\n");
+        $nNode = 100000;
+        print("\n==================================\n");
+        print("Singly-linked Performance report.");
+        print("\n==================================\n");
         printf("Number of nodes is %s.\n",  $nNode);
 
         $stopwatch = new Stopwatch();
@@ -45,7 +45,7 @@ class PerfTest extends TestCase
         $feedTime   = $feedEvent->getDuration();
 
         $this->assertTrue($feedTime <=  500, "feed time lower than 500ms" );
-        printf ("feed time took %s ms.\n", $feedTime);
+        printf ("O(n) feed time took %s ms.\n", $feedTime);
 
         $stopwatch->start('iter');
 
@@ -55,19 +55,17 @@ class PerfTest extends TestCase
 
         $iterEvent  =  $stopwatch->stop('iter');
         $iterTime   = $iterEvent->getDuration();
-        printf ("iter time took %s ms.\n", $iterTime);
+        printf ("O(n) iter time took %s ms.\n", $iterTime);
   
-
-        $collection->headn($collection->length());    
 
         $stopwatch->start('rank');
 
-        // get head rank
+        // get head rank from the right
         $collection->headn()->rrank();
    
         $rankEvent  =  $stopwatch->stop('rank');
         $rankTime   = $rankEvent->getDuration();
-        printf ("head rank time took %s ms.\n", $rankTime);
+        printf ("O(n) head rrank time took %s ms.\n", $rankTime);
   
         $stopwatch->start('pop');
 

@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.2 2021-12-03
+-----
+ * Added offset access to nodes: @see list `headn` and `tailn` methods. 
+
+
 1.1.1 2021-12-01
 -----
  * Suppression of unused class AbstactCommmonNode

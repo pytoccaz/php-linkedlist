@@ -34,6 +34,7 @@ abstract class AbstractNode implements IterableNodeInterface {
     
     /**
      * Returns the following node (the node at $this right) by default.
+     * Returns the N'th next linked node when $offset = N with N > 1.
      * @param int $offset (optional): n'th node (beginning to $this) to return inside the list 
      * @return AbstractNode|null
      */

@@ -33,7 +33,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
 
     /**
      * Returns the tail node (ie the right most node) by default
-     * Returns the n'th previous linked node depending on $offset arg.
+     * Returns the N'th previous linked node when $offset = N with N >= 1.
      * @param int $offset 
      * @return AbstractDoublyLinkedNode|null
      * 

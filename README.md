@@ -125,7 +125,7 @@ This design pattern is based on a recursive call.
 
 The time complexity of such recursive methods is `0(n)` where `n` is the number of nodes.
 
-**If your configuration has `xdebug` module enabled, the use of such recursive function calls may raise the following error if your list length exceeds the limit of ~256:** 
+**If your configuration has `xdebug` module enabled, the use of such recursive function calls may raise the following error if your list length get close to 256:** 
 
 ```
 Error: Maximum function nesting level of '256' reached, aborting!    
@@ -133,6 +133,21 @@ Error: Maximum function nesting level of '256' reached, aborting!
 
 If you don't want to modify your `xdebug` config by increasing the `xdebug.max_nesting_level` setting, just don't use that pattern design for long lists.     
 
+
+**Be carefull not to use recursive communication methods between nodes when iterating over nodes because the time complexity would be O(n2) leading to very poor performance.**
+
+
+```php
+// very low 0(n) < perf < 0(n^2)
+for (i=0; i<$list->length(); i++) {
+    $list->headn($i);
+}
+// very very low perf ~ O(n^2)  ...
+for (i=0; i<$list->length(); i++) {
+    $list->headn($i)->rrank();
+}
+
+```
 
 ## Tests
 

@@ -20,10 +20,14 @@ class CollectionTest extends TestCase
     
         $this->assertEquals($list->headn()->prev(), null, "The head node has no previous node.");
     
-        $this->assertInstanceOf(FifoNode::class, $list->headn()->next(), "The head node has a next node.");
+        if ($list->length()>1)
+            $this->assertInstanceOf(FifoNode::class, $list->headn()->next(), "The head node has a next node.");
     
+        
         $this->assertEquals($list->tailn()->next(), null, "The tail node has no next node.");
-        $this->assertInstanceOf(FifoNode::class, $list->tailn()->prev(), "The tail node has a previous node.");
+        
+        if ($list->length()>1)
+            $this->assertInstanceOf(FifoNode::class, $list->tailn()->prev(), "The tail node has a previous node.");
     
         $this->assertEquals($list->tailn()->isLast(), true, "The tail node is the last one.");
         $this->assertEquals($list->headn()->isFirst(), true, "The head node is the first one.");
@@ -37,6 +41,8 @@ class CollectionTest extends TestCase
 
         $this->assertEquals($list->length(), count($list), "List obj are countable");
 
+        $this->assertEquals($list->tailn($list->length()-1), $list->headn(), "Get the head node through tailn offset");
+        $this->assertEquals($list->headn($list->length()-1), $list->tailn(), "Get the tail node through headn offset");
        
     } 
 
@@ -66,7 +72,7 @@ class CollectionTest extends TestCase
     $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
 
     $this->assertEquals( [3,2,1], $list->toArray(), "Expected toArray() return."); 
-
+    $this->assertEquals($list->headn($list->length()-1)->getValue(), 1, "Get the tail node through headn offset");
 
     $ar=[];
     foreach ($list as $value) {
@@ -128,6 +134,8 @@ class CollectionTest extends TestCase
 
     $this->assertEquals($list->headn()->next(), null, "The node has no next node.");
  
+    $this->nonEmptyFifoListAlwaysVerify($list);
+
      // A second node is pushed
     $list->add(2);
     $this->nonEmptyFifoListAlwaysVerify($list);

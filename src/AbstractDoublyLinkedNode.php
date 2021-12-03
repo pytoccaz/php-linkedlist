@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-
+use Obernard\LinkedList\Exception\NodeException;
 /**
  *  AbstractDoublyLinkedNode class defines a node inside a DoublyLinkedList
  *  Inside DoublyLinkedList, a node is linked to a next node and a previous node. 
@@ -33,19 +33,24 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
 
     
     /**
-     * Returns the following node (the node at $this right).
+     * Returns the previous node (the node at $this left) by default.
+     * Returns the N'th previous linked node when $offset = N with N > 1.
      * @return AbstractDoublyLinkedNode|null
      */
-    public function next():?AbstractDoublyLinkedNode {
-        return $this->next;
-    }
+    public function prev(int $offset= 1):?AbstractDoublyLinkedNode {
 
-    /**
-     * Returns the previous node (the node at $this left). 
-     * @return AbstractDoublyLinkedNode|null
-     */
-    public function prev():?AbstractDoublyLinkedNode {
-        return $this->prev;
+        if ($offset === 1) 
+            return $this->prev;
+        
+        if ($offset < 1) 
+            throw (new NodeException("Offset cannot be lower than 1!"));
+
+
+        if ($this->isFirst())
+            throw (new NodeException("Offset out of range!"));
+
+        return $this->prev->prev(--$offset);
+
     }
 
     /**
@@ -75,13 +80,14 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
 
     /**
      *  Returns the rank beginning at left (ie at the beginning).
+     *  !! Time complexity is O(n) !!
      *  @return int 
      */
     public function lrank():?int {
-        if ($this->isFirst())  
+        if ($this->isFirst()) // if you Node is the most-left node just say 0 
             return 0;
         else {
-            // ask for your brother at right and increment its rank.
+            // just ask your previous node for its rank and increment 
             $prevNodeRrank=$this->prev->lrank();    
             return ++$prevNodeRrank; 
         }

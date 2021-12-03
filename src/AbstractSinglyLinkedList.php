@@ -9,7 +9,7 @@
  */
 namespace  Obernard\LinkedList;
 
-use Obernard\LinkedList\Exception\LinkNodeException;
+use Obernard\LinkedList\Exception\NodeException;
 
 /**
  * 
@@ -36,7 +36,7 @@ use Obernard\LinkedList\Exception\LinkNodeException;
      */
     public function lpushn(AbstractSinglyLinkedNode $node):self {
         if ($node->next())
-            throw new LinkNodeException('Next node is already set !');
+            throw new NodeException('Next node is already set !');
 
          // substitute head node with the new node
         $node->setNext($this->head);

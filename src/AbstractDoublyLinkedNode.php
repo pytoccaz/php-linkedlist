@@ -42,9 +42,12 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
         if ($offset === 1) 
             return $this->prev;
         
-        if ($offset < 1) 
-            throw (new NodeException("Offset cannot be lower than 1!"));
+        if ($offset === 0) 
+            return $this;
 
+
+        if ($offset < 1) 
+            throw (new NodeException("Offset cannot be lower than 0!"));
 
         if ($this->isFirst())
             throw (new NodeException("Offset out of range!"));

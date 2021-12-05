@@ -43,8 +43,12 @@ abstract class AbstractNode implements IterableNodeInterface {
         if ($offset === 1) 
             return $this->next;
         
+        if ($offset === 0) 
+            return $this;
+
+
         if ($offset < 1) 
-            throw (new NodeException("Offset cannot be lower than 1!"));
+            throw (new NodeException("Offset cannot be lower than 0!"));
 
         if ($this->islast())
             throw (new NodeException("Offset out of range!"));

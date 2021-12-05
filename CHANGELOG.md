@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.3 2021-12-05
+-----
+ * next and prev Node methods return node itself when offset is 0
+
+
 1.2 2021-12-03
 -----
  * Added offset access to nodes: @see list `headn` and `tailn` methods. 

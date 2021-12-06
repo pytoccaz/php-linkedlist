@@ -72,7 +72,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
         if ($offset === 0)
             return $this->head;
         
-        if ($offset >=1 AND $offset <= $this->length)
+        if ($offset >=1 AND $offset <= $this->length-1)
             return $this->head->next($offset);
 
         if ($offset < 0) 

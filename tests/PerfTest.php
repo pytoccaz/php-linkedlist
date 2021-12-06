@@ -6,13 +6,6 @@
 
 namespace Obernard\LinkedList\Tests;
 
-ini_set('xdebug.remote_autostart', 0);
-ini_set('xdebug.remote_enable', 0);
-ini_set('xdebug.profiler_enable', 0);
-
-ini_set('xdebug.max_nesting_level=100000 ', 0);
-
-
 use Symfony\Component\Stopwatch\Stopwatch;
 
 use  Obernard\LinkedList\Collection\FiloList;
@@ -23,7 +16,7 @@ class PerfTest extends TestCase
     public function testPerf()
     {
 
-        $nNode = 100000;
+        $nNode = 10000;
         print("\n==================================\n");
         print("Singly-linked Performance report.");
         print("\n==================================\n");
@@ -62,7 +55,9 @@ class PerfTest extends TestCase
 
         // get head rank from the right
         $collection->headn()->rrank();
-   
+        // for ($i=0; $i<$collection->length(); $i++) {
+        //     $collection->headn($i);
+        // }
         $rankEvent  =  $stopwatch->stop('rank');
         $rankTime   = $rankEvent->getDuration();
         printf ("O(n) head rrank time took %s ms.\n", $rankTime);

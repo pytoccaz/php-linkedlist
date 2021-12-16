@@ -108,16 +108,28 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
     *   !! Be carefull: key() and current() methods'logic is left to the node class !!  
     */
 
-    public function rewind() {
+    /**
+     * Rewind the Iterator to the first element
+     * @return void 
+     */
+    public function rewind():void {
         $this->index = 0;
         $this->current = $this->head;
     }
 
-    public function next() {
+    /**
+     * Move forward to next element
+     * @return void
+     */
+    public function next():void {
          $this->current = $this->current->next();
          $this->index++;
     }
 
+    /**
+     * Checks if current position is valid
+     * @return bool
+     */
     public function valid():bool {
         return $this->current !=null ;
     }

@@ -139,11 +139,11 @@ If you don't want to modify your `xdebug` config by increasing the `xdebug.max_n
 
 ```php
 // very low 0(n) < perf < 0(n^2)
-for (i=0; i<$list->length(); i++) {
+for ($i=0; $i<$list->length(); $i++) {
     $list->headn($i);
 }
 // very very low perf ~ O(n^2)  ...
-for (i=0; i<$list->length(); i++) {
+for ($i=0; $i<$list->length(); $i++) {
     $list->headn($i)->rrank();
 }
 

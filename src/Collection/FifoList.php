@@ -30,9 +30,9 @@ final class FiFoList extends AbstractDoublyLinkedList {
 
     /**
      * Pops tail data content from the stack.
-     * @return mixed
+     * @return mixed the head node's data property 
      */
-    public function pop() 
+    public function pop():mixed 
     {
          return $this->rpopn()->getValue();
     }

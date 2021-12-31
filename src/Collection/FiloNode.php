@@ -35,20 +35,19 @@ class FiloNode extends AbstractSinglyLinkedNode {
     /**
      * IterableNodeInterface getKey method's implementation
      * Returns the iterator index position as key when iterated 
-     * @param int $index 
-     * 
+     * @param int $index the node's index 
+     * @return int the node's index
      */
-    public function getKey($index) {
+    public function getKey($index):int {
         return $index;
     }
 
     /**
      * IterableNodeInterface getValue method's implementation
      * Returns the data property as value when iterated 
-     * @param int $index 
-     * 
+     * @return mixed the node's data property 
      */
-    public function getValue() {
+    public function getValue():mixed {
         return $this->data;
     }
 

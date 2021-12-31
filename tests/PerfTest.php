@@ -16,7 +16,7 @@ class PerfTest extends TestCase
     public function testPerf()
     {
 
-        $nNode = 10000;
+        $nNode = 100000;
         print("\n==================================\n");
         print("Singly-linked Performance report.");
         print("\n==================================\n");

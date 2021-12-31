@@ -147,7 +147,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * @param int index position of the iterator.
      * @return mixed key associated with the iterated node.
      */
-    public function key() {
+    public function key():mixed {
          if (!$this->valid())
             return null;
 
@@ -159,7 +159,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * The logic is left to the node final class.
      * @return mixed value associated with the iterated node.
      */  
-    public function current() {
+    public function current():mixed {
         return $this->current->getValue() ;
     }
 };

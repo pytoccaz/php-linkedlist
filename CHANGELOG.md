@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.0 2021-12-31
+-----
+ * fix php8 deprecations 
+
+
 1.3 2021-12-05
 -----
  * next and prev Node methods return node itself when offset is 0

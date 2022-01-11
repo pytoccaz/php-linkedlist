@@ -17,7 +17,7 @@ use  Obernard\LinkedList\AbstractDoublyLinkedList;
  * @author Olivier Bernard
  */   
 
-final class FiFoList extends AbstractDoublyLinkedList {
+final class FifoList extends AbstractDoublyLinkedList {
 
     /**
      * Pushes data at the head of the stack. 

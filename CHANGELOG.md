@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+1.3.3 2022-01-11
+-----
+ * fix typo FiFoList->Fifolist 
+
 
 1.3.2 2022-01-11
 -----

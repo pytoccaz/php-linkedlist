@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+2.0.3 2022-01-11
+ * fix typo FiFoList->Fifolist 
+
+
 2.0.2 2022-01-11
 -----
  * add .gitattributes to exclude some files from composer installation.

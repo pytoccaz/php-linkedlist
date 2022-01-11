@@ -7,8 +7,8 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace  Obernard\LinkedList\Collection;
-use  Obernard\LinkedList\AbstractDoublyLinkedList;
+namespace Obernard\LinkedList\Collection;
+use Obernard\LinkedList\AbstractDoublyLinkedList;
 /**
  * 
  * First-in/first-out doubly-linked list implementation.

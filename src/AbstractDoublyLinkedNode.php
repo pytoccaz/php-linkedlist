@@ -7,9 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace  Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\NodeException;
+
 /**
  *  AbstractDoublyLinkedNode class defines a node inside a DoublyLinkedList
  *  Inside DoublyLinkedList, a node is linked to a next node and a previous node. 
@@ -25,42 +27,44 @@ use Obernard\LinkedList\Exception\NodeException;
  * does not impose contraints about concrete Node classes properties.
  * 
  * @author Olivier Bernard
-*/   
-abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
+ */
+abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode
+{
 
- 
-    protected ?AbstractDoublyLinkedNode $prev = null; 
 
-    
+    protected ?AbstractDoublyLinkedNode $prev = null;
+
+
     /**
      * Returns the previous node (the node at $this left) by default.
      * Returns the N'th previous linked node when $offset = N with N > 1.
      * @return AbstractDoublyLinkedNode|null
      */
-    public function prev(int $offset= 1):?AbstractDoublyLinkedNode {
+    public function prev(int $offset = 1): ?AbstractDoublyLinkedNode
+    {
 
-        if ($offset === 1) 
+        if ($offset === 1)
             return $this->prev;
-        
-        if ($offset === 0) 
+
+        if ($offset === 0)
             return $this;
 
 
-        if ($offset < 1) 
+        if ($offset < 1)
             throw (new NodeException("Offset cannot be lower than 0!"));
 
         if ($this->isFirst())
             throw (new NodeException("Offset out of range!"));
 
         return $this->prev->prev(--$offset);
-
     }
 
     /**
      * Sets the previous node.   
      * @return $this
      */
-    public function setPrev(?AbstractDoublyLinkedNode $node):self {
+    public function setPrev(?AbstractDoublyLinkedNode $node): self
+    {
         $this->prev = $node;
         return $this;
     }
@@ -69,7 +73,8 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
      * Is the node first inside a a List ?
      * @return bool
      */
-    public function isFirst():bool {
+    public function isFirst(): bool
+    {
         return $this->prev === null;
     }
 
@@ -77,7 +82,8 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
      * Is the node alone inside a a List ?
      * @return bool
      */
-    public function isAlone():bool {
+    public function isAlone(): bool
+    {
         return $this->isFirst() &&  $this->isLast();
     }
 
@@ -86,13 +92,14 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode  {
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
-    public function lrank():?int {
+    public function lrank(): ?int
+    {
         if ($this->isFirst()) // if you Node is the most-left node just say 0 
             return 0;
         else {
             // just ask your previous node for its rank and increment 
-            $prevNodeRrank=$this->prev->lrank();    
-            return ++$prevNodeRrank; 
+            $prevNodeRrank = $this->prev->lrank();
+            return ++$prevNodeRrank;
         }
     }
 }

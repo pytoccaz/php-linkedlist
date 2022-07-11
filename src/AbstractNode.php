@@ -90,4 +90,26 @@ abstract class AbstractNode implements IterableNodeInterface {
         }
     }
  
+
+    /**
+     * IterableNodeInterface getKey method's implementation
+     * Returns the iterator index position as key when iterated 
+     * @param int $index 
+     * @return int $index
+     */
+    public function getKey($index): mixed
+    {
+        return $index;
+    }
+
+
+    /**
+     * IterableNodeInterface getValue method's implementation
+     * Returns the Node itself 
+     * @return mixed $this
+     */
+    public function getValue(): mixed
+    {
+        return $this;
+    }
 }

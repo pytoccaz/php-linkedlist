@@ -24,7 +24,7 @@ use Obernard\LinkedList\Collection\FifoNode;
  * @author Olivier Bernard
  */   
 
-final class TailToHeadFiFoList extends AbstractDoublyLinkedList {
+final class TailToHeadFifoList extends AbstractDoublyLinkedList {
 
     /**
      * Pushes data at the tail of the list. 

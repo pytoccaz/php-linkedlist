@@ -59,11 +59,7 @@ class MyNode extends AbstractSinglyNode {
         $this->data = $data;
     }
 
-    // IterableNodeInterface 2 methods:
-    public function getKey($index) {
-        return $index;
-    }
-
+    // IterableNodeInterface getValue method:
     public function getValue() {
         return $this->data;
     }
@@ -82,15 +78,15 @@ foreach ($list as $key => $value) {
 
 
 ```
-A concrete Node class has to implement `IterableNodeInterface` `getKey` and `getValue` methods. 
+A Node classe has to implement `IterableNodeInterface` `getKey` and `getValue` methods. 
 
 - `getValue` method determines what is returned as value when iterating the list. 
 
 In above example, we decide that `foreach` statement iterate over `$data` node property.
 
-If you want to iterate over Node objects, just make `getValue` return `$this`.
+If you want to iterate over Node objects, do not over-write `getValue` because `AbstractNode->getValue()` already returns `$this`.
 
-- `getKey` method determines what is returned as key when iterating the list. It's argument `$index` is binded with the iterator position index. So an obvious classical solution is to make `getKey` returns `$index`. But you can return whatever suites your needs. 
+- `getKey` method determines what is returned as key when iterating the list. `AbstractNode->getkey()` argument `$index` is binded with the iterator position index. But you can over-write the method and make it return whatever suites your needs. 
 
 @see `AbstractCommonList` `key()` and `current()` methods to see how the magic works.
 

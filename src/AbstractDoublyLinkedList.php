@@ -7,9 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\ListException;
+
 /**
  * 
  * Doubly-linked list abstract class.
@@ -21,15 +23,16 @@ use Obernard\LinkedList\Exception\ListException;
  *  and the left most node is not linked to a previous node.
  * 
  * @author Olivier Bernard
- */   
+ */
 
-abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
-  
+abstract class AbstractDoublyLinkedList extends AbstractCommonList
+{
+
     /**
      * Points to the "right most" node
      * @var AbstractDoublyLinkedNode|null
      */
-    protected $tail = null; 
+    protected $tail = null;
 
     /**
      * Returns the tail node (ie the right most node) by default
@@ -38,29 +41,29 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      * @return AbstractDoublyLinkedNode|null
      * 
      */
-    public function tailn($offset= 0):?AbstractDoublyLinkedNode 
+    public function tailn($offset = 0): ?AbstractDoublyLinkedNode
     {
         if ($offset === 0)
             return $this->tail;
-        
-        if ($offset >=1 AND $offset <= $this->length)
+
+        if ($offset >= 1 and $offset <= $this->length)
             return $this->tail->prev($offset);
 
-        if ($offset < 0) 
+        if ($offset < 0)
             throw (new ListException("Offset is not a positive integer!"));
-    
-        if ($offset > 0) 
-            throw (new ListException("Offset is out off range!"));
 
+        if ($offset > 0)
+            throw (new ListException("Offset is out off range!"));
     }
-     /**
+    /**
      * Pushes a node at the left of the list. 
      * @return $this
      */
-    public function lpushn(AbstractDoublyLinkedNode $node):self {
+    public function lpushn(AbstractDoublyLinkedNode $node): self
+    {
         if ($node->next())
             throw new ListException('The node is already linked to a next node !');
-        
+
         if ($node->prev())
             throw new ListException('The node is already linked to a previous node !');
 
@@ -72,16 +75,16 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
         // if there are nodes in the list
         if (!$this->isEmpty())
             // the pushed node is linked to head node as a previous node
-            $node->setNext($this->head->setPrev($node));  
-        else 
+            $node->setNext($this->head->setPrev($node));
+        else
             // the first pushed node is linked to the tail 
-            $this->tail = $node; 
+            $this->tail = $node;
 
-            // the node takes the head position    
-        $this->head = $node; 
+        // the node takes the head position    
+        $this->head = $node;
 
-        $this->length+=1; // increment length
-    
+        $this->length += 1; // increment length
+
         return $this;
     }
 
@@ -90,7 +93,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
      * The poped node is detached from its next Node.
      * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function lpopn():?AbstractDoublyLinkedNode 
+    public function lpopn(): ?AbstractDoublyLinkedNode
     {
 
         // if the list is empty just returns null 
@@ -99,35 +102,33 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
 
         // the node to pop is at head position 
         $nodeToPop = $this->head;
-        
+
         // if the node to pop is alone...
         if ($nodeToPop->isAlone()) {
 
             $this->tail = null;
             $this->head = null;
-
-        }
-        else {
+        } else {
             // the next node of the node to pop is detached from it's previous node (ie node to pop) 
             //  and takes the head. 
-            $this->head = $nodeToPop->next()->setPrev(null);  
+            $this->head = $nodeToPop->next()->setPrev(null);
         }
 
-        $this->length-=1; // deincrement length
- 
-            // detach poped node from its next brother node
-        return $nodeToPop->setNext(null);
+        $this->length -= 1; // deincrement length
 
+        // detach poped node from its next brother node
+        return $nodeToPop->setNext(null);
     }
 
-     /**
+    /**
      * Pushes a node at the right of the list. 
      * @return $this
      */
-    public function rpushn(AbstractDoublyLinkedNode $node):self {
+    public function rpushn(AbstractDoublyLinkedNode $node): self
+    {
         if ($node->next())
             throw new ListException('The node is already linked to a next node !');
-        
+
         if ($node->prev())
             throw new ListException('The node is already linked to a previous node !');
 
@@ -139,25 +140,25 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
         // if there are nodes in the list
         if (!$this->isEmpty())
             // the pushed node is linked to tail node as a next node
-            $node->setPrev($this->tail->setNext($node));  
-        else 
+            $node->setPrev($this->tail->setNext($node));
+        else
             // the first pushed node is linked to the head 
-            $this->head = $node; 
+            $this->head = $node;
 
         // the node takes the tail position    
-        $this->tail = $node; 
+        $this->tail = $node;
 
-        $this->length+=1; // increment length
-    
+        $this->length += 1; // increment length
+
         return $this;
     }
-  
+
     /**
      * Pops tail node from the list.
      * The poped node is detached from its previous Node.
      * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function rpopn():?AbstractDoublyLinkedNode 
+    public function rpopn(): ?AbstractDoublyLinkedNode
     {
 
         // if the list is empty just returns null 
@@ -166,27 +167,21 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList  {
 
         // the node to pop is at tail position 
         $nodeToPop = $this->tail;
-        
+
         // if the node to pop is alone...
         if ($nodeToPop->isAlone()) {
 
             $this->tail = null;
             $this->head = null;
-
-        }
-        else {
+        } else {
             // the previous node of the node to pop is detached from it's next node (ie node to pop) 
             //  and takes the tail. 
-            $this->tail = $nodeToPop->prev()->setNext(null);  
+            $this->tail = $nodeToPop->prev()->setNext(null);
         }
 
-        $this->length-=1; // deincrement length
- 
-            // detach poped node from its previous brother node
+        $this->length -= 1; // deincrement length
+
+        // detach poped node from its previous brother node
         return $nodeToPop->setPrev(null);
-
     }
-
-
-
 };

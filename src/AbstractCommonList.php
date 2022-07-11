@@ -7,35 +7,38 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\ListException;
+
 /**
  * 
  * Defines common properties and methods for all other List classes.
  * 
  * @author Olivier Bernard
- */   
+ */
 
-abstract class AbstractCommonList implements \Iterator, \Countable {
+abstract class AbstractCommonList implements \Iterator, \Countable
+{
 
 
     /**
      * Points to the "left most" node
      * @var AbstractNode|null
      */
-    protected $head = null; 
+    protected $head = null;
 
     /**
      * Points to the node returned during iteration.
      * @var AbstractNode|null
      */
     private $current = null; // points to the node returned during iteration
-    
+
     /**
      * @var int the iterator index position.
      */
-    private $index = 0; 
+    private $index = 0;
 
 
     /**
@@ -47,7 +50,8 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * Returns the number of nodes inside the list.
      * @return int 
      */
-    public function length():int {
+    public function length(): int
+    {
         return $this->length;
     }
 
@@ -55,7 +59,8 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * Returns true when the list is empty.
      * @return bool 
      */
-    public function isEmpty():bool {
+    public function isEmpty(): bool
+    {
         return $this->length === 0;
     }
 
@@ -67,27 +72,26 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * @return AbstractNode|null
      * 
      */
-    public function headn($offset= 0):?AbstractNode 
+    public function headn($offset = 0): ?AbstractNode
     {
         if ($offset === 0)
             return $this->head;
-        
-        if ($offset >=1 AND $offset <= $this->length-1)
+
+        if ($offset >= 1 and $offset <= $this->length - 1)
             return $this->head->next($offset);
 
-        if ($offset < 0) 
+        if ($offset < 0)
             throw (new ListException("Offset is not a positive integer!"));
-    
-        if ($offset > 0) 
-            throw (new ListException("Offset is out off range!"));
 
+        if ($offset > 0)
+            throw (new ListException("Offset is out off range!"));
     }
 
     /**
      * Returns into an array whatever the final class decides to (depends on the current() method implementation).  
      * @return array[mixed]
-     */ 
-    public function toArray():array 
+     */
+    public function toArray(): array
     {
         $ar = [];
         foreach ($this as $node) {
@@ -97,22 +101,24 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
     }
 
     /**
-    *   Countable interface implementation
-    */
-    public function count():int {
+     *   Countable interface implementation
+     */
+    public function count(): int
+    {
         return $this->length;
     }
 
     /**
-    *   foreach Iterator functions implementation
-    *   !! Be carefull: key() and current() methods'logic is left to the node class !!  
-    */
+     *   foreach Iterator functions implementation
+     *   !! Be carefull: key() and current() methods'logic is left to the node class !!  
+     */
 
     /**
      * Rewind the Iterator to the first element
      * @return void 
      */
-    public function rewind():void {
+    public function rewind(): void
+    {
         $this->index = 0;
         $this->current = $this->head;
     }
@@ -121,24 +127,26 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * Move forward to next element
      * @return void
      */
-    public function next():void {
-         $this->current = $this->current->next();
-         $this->index++;
+    public function next(): void
+    {
+        $this->current = $this->current->next();
+        $this->index++;
     }
 
     /**
      * Checks if current position is valid
      * @return bool
      */
-    public function valid():bool {
-        return $this->current !=null ;
+    public function valid(): bool
+    {
+        return $this->current != null;
     }
 
     /**
-    *  !! Be carefull: key() and current() methods'logic is left to the node class
-    *     through its getKey and getValue methods !!
-    *   
-    */
+     *  !! Be carefull: key() and current() methods'logic is left to the node class
+     *     through its getKey and getValue methods !!
+     *   
+     */
 
     /**
      * Returns the key associated with a node when the list is iterated.
@@ -147,19 +155,21 @@ abstract class AbstractCommonList implements \Iterator, \Countable {
      * @param int index position of the iterator.
      * @return mixed key associated with the iterated node.
      */
-    public function key():mixed {
-         if (!$this->valid())
+    public function key(): mixed
+    {
+        if (!$this->valid())
             return null;
 
-         return  $this->current->getKey($this->index); 
+        return  $this->current->getKey($this->index);
     }
 
     /**
      * Returns the value associated with a node when the list is iterated.
      * The logic is left to the node final class.
      * @return mixed value associated with the iterated node.
-     */  
-    public function current():mixed {
-        return $this->current->getValue() ;
+     */
+    public function current(): mixed
+    {
+        return $this->current->getValue();
     }
 };

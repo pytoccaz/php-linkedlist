@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\NodeException;
@@ -26,43 +27,44 @@ use Obernard\LinkedList\Exception\NodeException;
  * 
  * 
  * @author Olivier Bernard
- */   
+ */
 
- abstract class AbstractSinglyLinkedList extends AbstractCommonList  {
-  
-    /**
-     * Pushes a node at the head of the list. 
-     * @return $this
-     */
-    public function lpushn(AbstractSinglyLinkedNode $node):self {
-        if ($node->next())
-            throw new NodeException('Next node is already set !');
+abstract class AbstractSinglyLinkedList extends AbstractCommonList
+{
 
-         // substitute head node with the new node
-        $node->setNext($this->head);
-        $this->head = $node;
+   /**
+    * Pushes a node at the head of the list. 
+    * @return $this
+    */
+   public function lpushn(AbstractSinglyLinkedNode $node): self
+   {
+      if ($node->next())
+         throw new NodeException('Next node is already set !');
 
-        $this->length+=1; // increment length
-        return $this;
-    }
+      // substitute head node with the new node
+      $node->setNext($this->head);
+      $this->head = $node;
 
-    /**
-     * Pops head node from the list.
-     * The poped node is detached from its next Node.
-     * @return AbstractSinglyLinkedNode|null poped node 
-     */
-    public function lpopn():?AbstractSinglyLinkedNode  
-    {
-         if ($this->length == 0)
-            return null;
-         else {
-            $nodeToPop = $this->head;
-            $this->head = $this->head->next();
-            $this->length-=1; // deincrement length
- 
-            // detach poped node from its brother next node
-            return $nodeToPop->setNext(null);
-         }
-    }
-   
+      $this->length += 1; // increment length
+      return $this;
+   }
+
+   /**
+    * Pops head node from the list.
+    * The poped node is detached from its next Node.
+    * @return AbstractSinglyLinkedNode|null poped node 
+    */
+   public function lpopn(): ?AbstractSinglyLinkedNode
+   {
+      if ($this->length == 0)
+         return null;
+      else {
+         $nodeToPop = $this->head;
+         $this->head = $this->head->next();
+         $this->length -= 1; // deincrement length
+
+         // detach poped node from its brother next node
+         return $nodeToPop->setNext(null);
+      }
+   }
 };

@@ -51,10 +51,10 @@ class CollectionTest extends TestCase
         $this->assertEquals(true, $list->tailn(0)->prev(0)->prev(0)->isLast(), "5/ The tail node is the last one.");
 
 
-        $this->assertEquals($list->tailn()->lrank(), $list->length() - 1, "Tail node lrank always equals length - 1.");
-        $this->assertEquals($list->headn()->rrank(), $list->length() - 1, "Head node rrank always equals length - 1.");
-        $this->assertEquals(0, $list->tailn()->rrank(), "Tail node rrank is 0");
-        $this->assertEquals(0, $list->headn()->lrank(), "Head node lrank is 0");
+        $this->assertEquals($list->tailn()->distanceToFirstNode(), $list->length() - 1, "Tail node distanceToFirstNode always returns length - 1.");
+        $this->assertEquals($list->headn()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
+        $this->assertEquals(0, $list->tailn()->distanceToLastNode(), "Tail node distanceToLastNode returns 0");
+        $this->assertEquals(0, $list->headn()->distanceToFirstNode(), "Head node distanceToFirstNode returns 0");
 
 
         $this->assertEquals($list->length(), count($list), "List obj are countable");
@@ -85,7 +85,7 @@ class CollectionTest extends TestCase
         $this->assertEquals($list->headn(2), $list->headn()->next()->next(), "Get n'th node through headn");
         // $this->assertEquals($list->headn(3), $list->headn()->next()->next()->next(), "Get n'th node through headn");
         // $this->assertEquals(NULL, $list->headn()->next()->next()->next(), "Get n'th node through headn");
-        $this->assertEquals($list->headn()->rrank(), $list->length() - 1, "Head node rrank always equals length - 1.");
+        $this->assertEquals($list->headn()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
 
         $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
 

@@ -54,13 +54,13 @@ class PerfTest extends TestCase
         $stopwatch->start('rank');
 
         // get head rank from the right
-        $collection->headn()->rrank();
+        $collection->headn()->distanceToLastNode();
         // for ($i=0; $i<$collection->length(); $i++) {
         //     $collection->headn($i);
         // }
         $rankEvent  =  $stopwatch->stop('rank');
         $rankTime   = $rankEvent->getDuration();
-        printf ("O(n) head rrank time took %s ms.\n", $rankTime);
+        printf ("O(n) head distanceToLastNode time took %s ms.\n", $rankTime);
   
         $stopwatch->start('pop');
 
@@ -71,7 +71,7 @@ class PerfTest extends TestCase
 
         $popEvent  = $stopwatch->stop('pop');
         $popTime   = $popEvent->getDuration();
-        printf ("pop all time took %s ms.\n", $popTime);
+        printf ("pop-all time took %s ms.\n", $popTime);
 
         $this->assertTrue($iterTime <= $feedTime, "iter time lower than feed time" );
     }

@@ -88,17 +88,17 @@ abstract class AbstractDoublyLinkedNode extends AbstractSinglyLinkedNode
     }
 
     /**
-     *  Returns the rank beginning at left (ie at the beginning).
+     *  Returns the rank beginning at head.
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
-    public function lrank(): ?int
+    public function distanceToFirstNode(): ?int
     {
         if ($this->isFirst()) // if you Node is the most-left node just say 0 
             return 0;
         else {
             // just ask your previous node for its rank and increment 
-            $prevNodeRrank = $this->prev->lrank();
+            $prevNodeRrank = $this->prev->distanceToFirstNode();
             return ++$prevNodeRrank;
         }
     }

@@ -35,7 +35,7 @@ abstract class AbstractNode implements IterableNodeInterface {
     /**
      * Returns the following node (the node at $this right) by default.
      * Returns the N'th next linked node when $offset = N with N > 1.
-     * @param int $offset (optional): n'th node (beginning to $this) to return inside the list 
+     * @param int $offset (optional): N'th node (beginning to $this) 
      * @return AbstractNode|null
      */
     public function next(int $offset= 1):?AbstractNode {
@@ -76,16 +76,16 @@ abstract class AbstractNode implements IterableNodeInterface {
     }
 
     /**
-     *  Returns the node's rank beginning at right (ie at the end).
+     *  Returns the node's rank beginning at the tail (ie at the end).
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
-    public function rrank():int {
+    public function distanceToLastNode():int {
         if ($this->isLast()) // if you Node are the most-right node just say 0
             return 0;
         else {
             // just ask your next node for its rank and increment 
-            $nextNodeRrank=$this->next->rrank();    
+            $nextNodeRrank=$this->next->distanceToLastNode();    
             return ++$nextNodeRrank; 
         }
     }

@@ -2,8 +2,9 @@ CHANGELOG
 =========
 3.0
 -----
- * `AbstractSinglyLinkedList` methods `lpushn` and `lpopn` are replaced by `pushToHead` and `popFromHead` 
- * `AbstractDoublyLinkedList` methods `rpushn` and `rpopn` are replaced by `pushToTail` and `popFromTail`
+ * Node methods `lrank` and `rrank` are replaced by `distanceToFirstNode` and `distanceToLastNode` 
+ * List methods `lpushn` and `lpopn` are replaced by `pushToHead` and `popFromHead` 
+ * List methods `rpushn` and `rpopn` are replaced by `pushToTail` and `popFromTail`
 
  
 2.0.4

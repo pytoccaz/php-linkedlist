@@ -21,8 +21,6 @@ use Obernard\LinkedList\Exception\ListException;
 
 abstract class AbstractCommonList implements \Iterator, \Countable
 {
-
-
     /**
      * Points to the "left most" node
      * @var AbstractNode|null

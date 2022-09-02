@@ -95,7 +95,7 @@ If you want to iterate over Node objects, do not over-write `getValue` because `
 
 An interesting design pattern is to make the nodes communicate through the list. 
 
-See `AbstractNode` `rrank()` method as an example of inter-nodes communication:
+See `AbstractNode` `distanceToLastNode()` method as an example of inter-nodes communication:
 
 ```php
 // AbstractNode.php
@@ -105,12 +105,12 @@ See `AbstractNode` `rrank()` method as an example of inter-nodes communication:
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
-    public function rrank():int {
+    public function distanceToLastNode():int {
         if ($this->isLast()) // if you Node are the most-right node just say 0
             return 0;
         else {
             // just ask your next node for its rank and increment 
-            $nextNodeRrank=$this->next->rrank();    
+            $nextNodeRrank=$this->next->distanceToLastNode();    
             return ++$nextNodeRrank; 
         }
     }
@@ -140,7 +140,7 @@ for ($i=0; $i<$list->length(); $i++) {
 }
 // very very low perf ~ O(n^2)  ...
 for ($i=0; $i<$list->length(); $i++) {
-    $list->headn($i)->rrank();
+    $list->headn($i)->distanceToLastNode();
 }
 
 ```

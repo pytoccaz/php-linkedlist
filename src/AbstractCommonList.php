@@ -65,12 +65,11 @@ abstract class AbstractCommonList implements \Iterator, \Countable
     /**
      * Returns the head node (ie the left most node) by default.
      * Returns the N'th next linked node when $offset = N with N >= 1.
-     * Mainly used for internal logic.
      * @param int $offset 
      * @return AbstractNode|null
      * 
      */
-    public function headn(int $offset = 0): ?AbstractNode
+    public function getHeadNode(int $offset = 0): ?AbstractNode
     {
         if ($offset === 0)
             return $this->head;
@@ -84,6 +83,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable
         if ($offset > 0)
             throw (new ListException("Offset is out off range!"));
     }
+
 
     /**
      * Returns into an array whatever the final class decides to (depends on the current() method implementation).  

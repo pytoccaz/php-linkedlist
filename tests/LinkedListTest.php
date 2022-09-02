@@ -18,49 +18,49 @@ class CollectionTest extends TestCase
 
     private function nonEmptyFifoListAlwaysVerify($list)
     {
-        $this->assertInstanceOf(FifoNode::class, $list->headn(), "The head node.");
-        $this->assertInstanceOf(FifoNode::class, $list->tailn(), "The tail node.");
+        $this->assertInstanceOf(FifoNode::class, $list->getHeadNode(), "The head node.");
+        $this->assertInstanceOf(FifoNode::class, $list->getTailNode(), "The tail node.");
 
-        $this->assertEquals($list->headn()->prev(), null, "The head node has no previous node.");
+        $this->assertEquals($list->getHeadNode()->prev(), null, "The head node has no previous node.");
 
-        // $this->assertEquals(null, $list->headn($list->length()), "when offset === length, return null.");
-
-
-        $this->assertEquals(true, $list->headn($list->length() - 1)->isLast(), "when offset === length-1, return tail node.");
+        // $this->assertEquals(null, $list->getHeadNode($list->length()), "when offset === length, return null.");
 
 
-
-        if ($list->length() > 1)
-            $this->assertInstanceOf(FifoNode::class, $list->headn()->next(), "The head node has a next node.");
+        $this->assertEquals(true, $list->getHeadNode($list->length() - 1)->isLast(), "when offset === length-1, return tail node.");
 
 
-        $this->assertEquals($list->tailn()->next(), null, "The tail node has no next node.");
 
         if ($list->length() > 1)
-            $this->assertInstanceOf(FifoNode::class, $list->tailn()->prev(), "The tail node has a previous node.");
-
-        $this->assertEquals(true, $list->headn()->isFirst(), "1/ The head node is the first one.");
-        $this->assertEquals(true, $list->headn(0)->isFirst(), "2/ The head node is the first one.");
-        $this->assertEquals(true, $list->headn()->next(0)->isFirst(), "4/ The head node is the first one.");
-        $this->assertEquals(true, $list->headn(0)->next(0)->isFirst(), "5/ The head node is the first one.");
+            $this->assertInstanceOf(FifoNode::class, $list->getHeadNode()->next(), "The head node has a next node.");
 
 
-        $this->assertEquals(true, $list->tailn()->isLast(), "The tail node is the last one.");
-        $this->assertEquals(true, $list->tailn(0)->isLast(), "2/ The tail node is the last one.");
-        $this->assertEquals(true, $list->tailn()->prev(0)->isLast(), "4/ The tail node is the last one.");
-        $this->assertEquals(true, $list->tailn(0)->prev(0)->prev(0)->isLast(), "5/ The tail node is the last one.");
+        $this->assertEquals($list->getTailNode()->next(), null, "The tail node has no next node.");
+
+        if ($list->length() > 1)
+            $this->assertInstanceOf(FifoNode::class, $list->getTailNode()->prev(), "The tail node has a previous node.");
+
+        $this->assertEquals(true, $list->getHeadNode()->isFirst(), "1/ The head node is the first one.");
+        $this->assertEquals(true, $list->getHeadNode(0)->isFirst(), "2/ The head node is the first one.");
+        $this->assertEquals(true, $list->getHeadNode()->next(0)->isFirst(), "4/ The head node is the first one.");
+        $this->assertEquals(true, $list->getHeadNode(0)->next(0)->isFirst(), "5/ The head node is the first one.");
 
 
-        $this->assertEquals($list->tailn()->distanceToFirstNode(), $list->length() - 1, "Tail node distanceToFirstNode always returns length - 1.");
-        $this->assertEquals($list->headn()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
-        $this->assertEquals(0, $list->tailn()->distanceToLastNode(), "Tail node distanceToLastNode returns 0");
-        $this->assertEquals(0, $list->headn()->distanceToFirstNode(), "Head node distanceToFirstNode returns 0");
+        $this->assertEquals(true, $list->getTailNode()->isLast(), "The tail node is the last one.");
+        $this->assertEquals(true, $list->getTailNode(0)->isLast(), "2/ The tail node is the last one.");
+        $this->assertEquals(true, $list->getTailNode()->prev(0)->isLast(), "4/ The tail node is the last one.");
+        $this->assertEquals(true, $list->getTailNode(0)->prev(0)->prev(0)->isLast(), "5/ The tail node is the last one.");
+
+
+        $this->assertEquals($list->getTailNode()->distanceToFirstNode(), $list->length() - 1, "Tail node distanceToFirstNode always returns length - 1.");
+        $this->assertEquals($list->getHeadNode()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
+        $this->assertEquals(0, $list->getTailNode()->distanceToLastNode(), "Tail node distanceToLastNode returns 0");
+        $this->assertEquals(0, $list->getHeadNode()->distanceToFirstNode(), "Head node distanceToFirstNode returns 0");
 
 
         $this->assertEquals($list->length(), count($list), "List obj are countable");
 
-        $this->assertEquals($list->tailn($list->length() - 1), $list->headn(), "Get the head node through tailn offset");
-        $this->assertEquals($list->headn($list->length() - 1), $list->tailn(), "Get the tail node through headn offset");
+        $this->assertEquals($list->getTailNode($list->length() - 1), $list->getHeadNode(), "Get the head node through getTailNode offset");
+        $this->assertEquals($list->getHeadNode($list->length() - 1), $list->getTailNode(), "Get the tail node through getHeadNode offset");
     }
 
 
@@ -80,17 +80,17 @@ class CollectionTest extends TestCase
 
         $list->add(1)->add(2)->add(3);
 
-        $this->assertEquals($list->headn(0), $list->headn(), "Get head node through headn");
-        $this->assertEquals($list->headn(1), $list->headn()->next(), "Get n'th node through headn");
-        $this->assertEquals($list->headn(2), $list->headn()->next()->next(), "Get n'th node through headn");
-        // $this->assertEquals($list->headn(3), $list->headn()->next()->next()->next(), "Get n'th node through headn");
-        // $this->assertEquals(NULL, $list->headn()->next()->next()->next(), "Get n'th node through headn");
-        $this->assertEquals($list->headn()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
+        $this->assertEquals($list->getHeadNode(0), $list->getHeadNode(), "Get head node through getHeadNode");
+        $this->assertEquals($list->getHeadNode(1), $list->getHeadNode()->next(), "Get n'th node through getHeadNode");
+        $this->assertEquals($list->getHeadNode(2), $list->getHeadNode()->next()->next(), "Get n'th node through getHeadNode");
+        // $this->assertEquals($list->getHeadNode(3), $list->getHeadNode()->next()->next()->next(), "Get n'th node through getHeadNode");
+        // $this->assertEquals(NULL, $list->getHeadNode()->next()->next()->next(), "Get n'th node through getHeadNode");
+        $this->assertEquals($list->getHeadNode()->distanceToLastNode(), $list->length() - 1, "Head node distanceToLastNode always returns length - 1.");
 
         $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
 
         $this->assertEquals([3, 2, 1], $list->toArray(), "Expected toArray() return.");
-        $this->assertEquals($list->headn($list->length() - 1)->getValue(), 1, "Get the tail node through headn offset");
+        $this->assertEquals($list->getHeadNode($list->length() - 1)->getValue(), 1, "Get the tail node through getHeadNode offset");
 
         $ar = [];
         foreach ($list as $value) {
@@ -135,7 +135,7 @@ class CollectionTest extends TestCase
 
 
         /**
-         * Test left push (internal lpushn method).
+         * Test left push (push to head).
          */
 
         // A first node is pushed
@@ -143,13 +143,13 @@ class CollectionTest extends TestCase
 
         $this->assertEquals(1, $list->length(), "The list contains 1 node.");
 
-        $this->assertInstanceOf(FifoNode::class, $list->headn(), "The head node.");
+        $this->assertInstanceOf(FifoNode::class, $list->getHeadNode(), "The head node.");
 
-        $this->assertEquals($list->headn(), $list->tailn(), "The node is at both head and tail positions.");
+        $this->assertEquals($list->getHeadNode(), $list->getTailNode(), "The node is at both head and tail positions.");
 
-        $this->assertEquals($list->headn()->prev(), null, "The node has no previous node.");
+        $this->assertEquals($list->getHeadNode()->prev(), null, "The node has no previous node.");
 
-        $this->assertEquals($list->headn()->next(), null, "The node has no next node.");
+        $this->assertEquals($list->getHeadNode()->next(), null, "The node has no next node.");
 
         $this->nonEmptyFifoListAlwaysVerify($list);
 
@@ -158,19 +158,19 @@ class CollectionTest extends TestCase
         $this->nonEmptyFifoListAlwaysVerify($list);
         $this->assertEquals(2, $list->length(), "The list contains 2 nodes.");
 
-        $this->assertEquals($list->tailn()->prev(), $list->headn(), "The head node is the tail previous node.");
-        $this->assertEquals($list->headn()->next(), $list->tailn(), "The tail node is the head next node.");
+        $this->assertEquals($list->getTailNode()->prev(), $list->getHeadNode(), "The head node is the tail previous node.");
+        $this->assertEquals($list->getHeadNode()->next(), $list->getTailNode(), "The tail node is the head next node.");
 
-        $this->assertEquals($list->headn()->getValue(), 2, "data are pushed at the head.");
-        $this->assertEquals($list->tailn()->getValue(), 1, "data pushes shift data to toward the tail.");
+        $this->assertEquals($list->getHeadNode()->getValue(), 2, "data are pushed at the head.");
+        $this->assertEquals($list->getTailNode()->getValue(), 1, "data pushes shift data to toward the tail.");
 
         // A third node is pushed
         $list->add(3);
         $this->nonEmptyFifoListAlwaysVerify($list);
         $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
-        $this->assertEquals($list->headn()->getValue(), 3, "data are pushed at the head.");
-        $this->assertEquals($list->headn()->next()->getValue(), 2, "1/ data pushes shift data toward the tail.");
-        $this->assertEquals($list->tailn()->getValue(), 1, "2/ data pushes shift data toward the tail.");
+        $this->assertEquals($list->getHeadNode()->getValue(), 3, "data are pushed at the head.");
+        $this->assertEquals($list->getHeadNode()->next()->getValue(), 2, "1/ data pushes shift data toward the tail.");
+        $this->assertEquals($list->getTailNode()->getValue(), 1, "2/ data pushes shift data toward the tail.");
 
 
         $this->assertEquals($list->toArray(), [3, 2, 1], "Expected toArray() return.");
@@ -219,7 +219,7 @@ class CollectionTest extends TestCase
 
 
         /**
-         * Test left push (internal lpushn method).
+         * Test left push (pushToHead).
          */
 
         // A first node is pushed
@@ -227,13 +227,13 @@ class CollectionTest extends TestCase
 
         $this->assertEquals(1, $list->length(), "The list contains 1 node.");
 
-        $this->assertInstanceOf(FifoNode::class, $list->headn(), "The head node.");
+        $this->assertInstanceOf(FifoNode::class, $list->getHeadNode(), "The head node.");
 
-        $this->assertEquals($list->headn(), $list->tailn(), "The node is at both head and tail positions.");
+        $this->assertEquals($list->getHeadNode(), $list->getTailNode(), "The node is at both head and tail positions.");
 
-        $this->assertEquals($list->headn()->prev(), null, "The node has no previous node.");
+        $this->assertEquals($list->getHeadNode()->prev(), null, "The node has no previous node.");
 
-        $this->assertEquals($list->headn()->next(), null, "The node has no next node.");
+        $this->assertEquals($list->getHeadNode()->next(), null, "The node has no next node.");
 
         // A second node is pushed
         $list->add(2);
@@ -242,24 +242,24 @@ class CollectionTest extends TestCase
 
         $this->assertEquals([1, 2], $list->toArray(), "Expected toArray() return.");
 
-        $this->assertEquals($list->tailn()->prev(), $list->headn(), "The head node is the tail previous node.");
-        $this->assertEquals($list->headn()->next(), $list->tailn(), "The tail node is the head next node.");
+        $this->assertEquals($list->getTailNode()->prev(), $list->getHeadNode(), "The head node is the tail previous node.");
+        $this->assertEquals($list->getHeadNode()->next(), $list->getTailNode(), "The tail node is the head next node.");
 
 
-        $this->assertEquals($list->tailn()->getValue(), 2, "data are pushed at the tail.");
-        $this->assertEquals($list->headn()->getValue(), 1, "data pushes shift data to toward the head.");
+        $this->assertEquals($list->getTailNode()->getValue(), 2, "data are pushed at the tail.");
+        $this->assertEquals($list->getHeadNode()->getValue(), 1, "data pushes shift data to toward the head.");
 
         // A third node is pushed
         $list->add(3);
         $this->nonEmptyFifoListAlwaysVerify($list);
         $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
-        $this->assertEquals($list->tailn()->getValue(), 3, "data are pushed at the tail.");
+        $this->assertEquals($list->getTailNode()->getValue(), 3, "data are pushed at the tail.");
 
         $this->assertEquals([1, 2, 3], $list->toArray(), "Expected toArray() return.");
 
 
-        $this->assertEquals($list->tailn()->prev()->getValue(), 2, "1/ data pushes shift data toward the head.");
-        $this->assertEquals($list->headn()->getValue(), 1, "2/ data pushes shift data toward the head.");
+        $this->assertEquals($list->getTailNode()->prev()->getValue(), 2, "1/ data pushes shift data toward the head.");
+        $this->assertEquals($list->getHeadNode()->getValue(), 1, "2/ data pushes shift data toward the head.");
 
 
         $ar = [];

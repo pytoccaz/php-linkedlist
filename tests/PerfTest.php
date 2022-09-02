@@ -54,9 +54,9 @@ class PerfTest extends TestCase
         $stopwatch->start('rank');
 
         // get head rank from the right
-        $collection->headn()->distanceToLastNode();
+        $collection->getHeadNode()->distanceToLastNode();
         // for ($i=0; $i<$collection->length(); $i++) {
-        //     $collection->headn($i);
+        //     $collection->getHeadNode($i);
         // }
         $rankEvent  =  $stopwatch->stop('rank');
         $rankTime   = $rankEvent->getDuration();

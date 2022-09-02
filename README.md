@@ -14,25 +14,25 @@ Final classes like `FiloList` are given as examples of implementation of abstrac
 
 Create an empty list and add nodes.
 ```php
-$list = new Obernard\LinkedList\Collection\FiloList;
+$stack = new Obernard\LinkedList\Collection\FiloList;
 
-$list->add('hello');
+$stack->add('hello');
 $list->add(1);
-$list->add(['test1', 'test2']);
+$stack->add(['test1', 'test2']);
 
 foreach ($list as $key, $value) {
     // do something 
 }
 
-$l = $list->length() // 3
+$l = $stack->length() // 3
 
-$node = $list->pop(); // ['test1', 'test2']
+$node = $stack->pop(); // ['test1', 'test2']
 
-$l = $list->length() // 2
+$l = $stack->length() // 2
 
-$node = $list->pop(); // 1
+$node = $stack->pop(); // 1
 
-$l = $list->length() // 1
+$l = $stack->length() // 1
 
 ```
 
@@ -40,7 +40,7 @@ $l = $list->length() // 1
 
 Abstract singly-linked list supports the use of abstract doubly-linked nodes but as a good practice use singly linked nodes inside singly-linked lists.
 
-Your concrete list class links instances of your concrete node classe. Like `FiloList` class, concrete list class may create node objects or may not.   
+Your concrete list class links instances of your concrete node classe. Concrete list classes may create node objects - like `FiloList` class does - or may not.   
 
 In this example, `MyList` class does not create nodes by itself:
 
@@ -70,7 +70,7 @@ class MyNode extends AbstractSinglyNode {
 
 $list= new MyList();
 
-$list->lpushn(new MyNode("test1"))->lpushn(new MyNode("test2"));
+$list->pushToHead(new MyNode("test1"))->pushToHead(new MyNode("test2"));
 
 foreach ($list as $key => $value) {
     // do something with $value string (returned by MyNode->getValue()) and $key (MyNode->getKey())
@@ -101,12 +101,12 @@ See `AbstractNode` `distanceToLastNode()` method as an example of inter-nodes co
 // AbstractNode.php
 
     /**
-     *  Returns the node's rank beginning at right (ie at the end).
+     *  Returns the node's rank beginning at tail node (ie at the end).
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
     public function distanceToLastNode():int {
-        if ($this->isLast()) // if you Node are the most-right node just say 0
+        if ($this->isLast()) // if you Node are the last node just say 0
             return 0;
         else {
             // just ask your next node for its rank and increment 
@@ -136,11 +136,11 @@ If you don't want to modify your `xdebug` config by increasing the `xdebug.max_n
 ```php
 // very low 0(n) < perf < 0(n^2)
 for ($i=0; $i<$list->length(); $i++) {
-    $list->headn($i);
+    $list->getHeadNode($i);
 }
 // very very low perf ~ O(n^2)  ...
 for ($i=0; $i<$list->length(); $i++) {
-    $list->headn($i)->distanceToLastNode();
+    $list->getHeadNode($i)->distanceToLastNode();
 }
 
 ```

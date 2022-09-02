@@ -41,7 +41,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
      * @return AbstractDoublyLinkedNode|null
      * 
      */
-    public function tailn($offset = 0): ?AbstractDoublyLinkedNode
+    public function getTailNode($offset = 0): ?AbstractDoublyLinkedNode
     {
         if ($offset === 0)
             return $this->tail;

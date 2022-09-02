@@ -17,10 +17,10 @@ Create an empty list and add nodes.
 $stack = new Obernard\LinkedList\Collection\FiloList;
 
 $stack->add('hello');
-$list->add(1);
+$stack->add(1);
 $stack->add(['test1', 'test2']);
 
-foreach ($list as $key, $value) {
+foreach ($stack as $key, $value) {
     // do something 
 }
 

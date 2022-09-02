@@ -78,22 +78,22 @@ foreach ($list as $key => $value) {
 
 
 ```
-A Node classe has to implement `IterableNodeInterface` `getKey` and `getValue` methods. 
+A Node classe implements `IterableNodeInterface` `getKey` and `getValue` methods through `AbstractNode`. You may need to replace one or the other. 
 
 - `getValue` method determines what is returned as value when iterating the list. 
 
 In above example, we decide that `foreach` statement iterate over `$data` node property.
 
-If you want to iterate over Node objects, do not over-write `getValue` because `AbstractNode->getValue()` already returns `$this`.
+If you want to iterate over Node objects, do not replace `getValue` because `AbstractNode->getValue()` already returns `$this`.
 
-- `getKey` method determines what is returned as key when iterating the list. `AbstractNode->getkey()` argument `$index` is binded with the iterator position index. But you can over-write the method and make it return whatever suites your needs. 
+- `getKey` method determines what is returned as key when iterating the list. `AbstractNode->getkey()` argument `$index` is binded with the iterator position index. But you can replace the method and make it return whatever suites your needs. 
 
 @see `AbstractCommonList` `key()` and `current()` methods to see how the magic works.
 
 
 ## Dialogue between nodes 
 
-An interesting design pattern is to make the nodes communicate through the list. 
+An interesting design pattern is to make nodes communicate through the list. 
 
 See `AbstractNode` `distanceToLastNode()` method as an example of inter-nodes communication:
 
@@ -136,11 +136,11 @@ If you don't want to modify your `xdebug` config by increasing the `xdebug.max_n
 ```php
 // very low 0(n) < perf < 0(n^2)
 for ($i=0; $i<$list->length(); $i++) {
-    $list->getHeadNode($i);
+    $list->head($i);
 }
 // very very low perf ~ O(n^2)  ...
 for ($i=0; $i<$list->length(); $i++) {
-    $list->getHeadNode($i)->distanceToLastNode();
+    $list->head($i)->distanceToLastNode();
 }
 
 ```

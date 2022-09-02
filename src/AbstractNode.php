@@ -18,12 +18,9 @@ use Obernard\LinkedList\Exception\NodeException;
  * 
  * - $this->next is arbitrary considered at the right of the node.
  * 
- * Final Node class must implement 2 methods:
+ * Final Node class may re-define the 2 IterableNodeInterface methods:
  * - getValue that defines the values retuned during list iteration.
  * - getKey that defines the key returned during list iteration.
- * 
- * Apart those 2 IterableNodeInterface methods, AbstractNode and all abstract node classes 
- * do not impose contraints about concrete Node classes properties.
  * 
  * @author Olivier Bernard
  */

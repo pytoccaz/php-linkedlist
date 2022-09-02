@@ -2,7 +2,7 @@ CHANGELOG
 =========
 3.0
 -----
- * List methods `headn` and `tailn` are replaced by `getHeadNode` and `getTailNode` 
+ * List methods `headn` and `tailn` are replaced by `head` and `tail` 
  * Node methods `lrank` and `rrank` are replaced by `distanceToFirstNode` and `distanceToLastNode` 
  * List methods `lpushn` and `lpopn` are replaced by `pushToHead` and `popFromHead` 
  * List methods `rpushn` and `rpopn` are replaced by `pushToTail` and `popFromTail`

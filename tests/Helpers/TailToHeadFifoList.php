@@ -9,6 +9,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList\Tests\Helpers;
 
 use Obernard\LinkedList\AbstractDoublyLinkedList;
@@ -22,15 +23,17 @@ use Obernard\LinkedList\Collection\FifoNode;
  *  
  * 
  * @author Olivier Bernard
- */   
+ */
 
-final class TailToHeadFifoList extends AbstractDoublyLinkedList {
+final class TailToHeadFifoList extends AbstractDoublyLinkedList
+{
 
     /**
      * Pushes data at the tail of the list. 
      * @return $this
      */
-    public function add($data):self {
+    public function add($data): self
+    {
         $this->pushToTail(new FifoNode($data));
         return $this;
     }
@@ -39,9 +42,8 @@ final class TailToHeadFifoList extends AbstractDoublyLinkedList {
      * Pops head data content from the list.
      * @return mixed
      */
-    public function pop() 
+    public function pop()
     {
-         return $this->popFromHead()->getValue();
+        return $this->popFromHead()->getValue();
     }
-
 };

@@ -7,23 +7,28 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList\Collection;
+
 use  Obernard\LinkedList\AbstractSinglyLinkedList;
+
 /**
  * 
  * First-in/last-out singly-linked list implementation.
  *  
  * 
  * @author Olivier Bernard
- */   
+ */
 
-final class FiloList extends AbstractSinglyLinkedList {
+final class FiloList extends AbstractSinglyLinkedList
+{
 
     /**
      * Pushes data at the head of the stack. 
      * @return $this
      */
-    public function add($data):self {
+    public function add($data): self
+    {
         $this->pushToHead(new FiloNode($data));
         return $this;
     }
@@ -32,9 +37,8 @@ final class FiloList extends AbstractSinglyLinkedList {
      * Pops head data content from the stack.
      * @return mixed the head node's data property 
      */
-    public function pop():mixed 
+    public function pop(): mixed
     {
-         return $this->popFromHead()->getValue();
+        return $this->popFromHead()->getValue();
     }
-
 };

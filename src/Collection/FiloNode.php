@@ -7,9 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList\Collection;
 
 use  Obernard\LinkedList\AbstractSinglyLinkedNode;
+
 /**
  * Node class defines a concrete node inside a List  
  * 
@@ -17,28 +19,29 @@ use  Obernard\LinkedList\AbstractSinglyLinkedNode;
  *  $this->prev is arbitrary considered at the left of the node.
  * 
  * @author Olivier Bernard
-*/   
-class FiloNode extends AbstractSinglyLinkedNode {
+ */
+class FiloNode extends AbstractSinglyLinkedNode
+{
 
     /**
      * @var mixed data stored in a FiloList node.
      * 
      */
-    public $data ;  
+    public $data;
 
     public function __construct($data)
     {
         $this->data = $data;
-    } 
-    
+    }
+
 
     /**
      * IterableNodeInterface getValue method's implementation
      * Returns the data property as value when iterated 
      * @return mixed the node's data property 
      */
-    public function getValue():mixed {
+    public function getValue(): mixed
+    {
         return $this->data;
     }
-
 }

@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList;
 
 
@@ -24,8 +25,7 @@ namespace Obernard\LinkedList;
  * impose contraints about concrete Node classes properties.
  *   
  * @author Olivier Bernard
-*/   
-abstract class AbstractSinglyLinkedNode extends AbstractNode {
- 
-
+ */
+abstract class AbstractSinglyLinkedNode extends AbstractNode
+{
 }

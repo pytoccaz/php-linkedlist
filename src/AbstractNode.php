@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\NodeException;
@@ -25,43 +26,45 @@ use Obernard\LinkedList\Exception\NodeException;
  * do not impose contraints about concrete Node classes properties.
  * 
  * @author Olivier Bernard
-*/   
-abstract class AbstractNode implements IterableNodeInterface {
+ */
+abstract class AbstractNode implements IterableNodeInterface
+{
 
- 
-    protected ?AbstractNode $next = null; 
 
-    
+    protected ?AbstractNode $next = null;
+
+
     /**
      * Returns the following node (the node at $this right) by default.
      * Returns the N'th next linked node when $offset = N with N > 1.
      * @param int $offset (optional): N'th node (beginning to $this) 
      * @return AbstractNode|null
      */
-    public function next(int $offset= 1):?AbstractNode {
+    public function next(int $offset = 1): ?AbstractNode
+    {
 
-        if ($offset === 1) 
+        if ($offset === 1)
             return $this->next;
-        
-        if ($offset === 0) 
+
+        if ($offset === 0)
             return $this;
 
 
-        if ($offset < 1) 
+        if ($offset < 1)
             throw (new NodeException("Offset cannot be lower than 0!"));
 
         if ($this->islast())
             throw (new NodeException("Offset out of range!"));
 
         return $this->next->next(--$offset);
-
     }
 
     /**
      * Sets the next node. 
      * @return AbstractNode
      */
-    public function setNext(?AbstractNode $node):self {
+    public function setNext(?AbstractNode $node): self
+    {
         $this->next = $node;
         return $this;
     }
@@ -71,7 +74,8 @@ abstract class AbstractNode implements IterableNodeInterface {
      * Is the node last inside a singly-linked List ?
      * @return bool
      */
-    public function isLast():bool {
+    public function isLast(): bool
+    {
         return $this->next === null;
     }
 
@@ -80,16 +84,17 @@ abstract class AbstractNode implements IterableNodeInterface {
      *  !! Time complexity is O(n) !!
      *  @return int 
      */
-    public function distanceToLastNode():int {
+    public function distanceToLastNode(): int
+    {
         if ($this->isLast()) // if you Node are the most-right node just say 0
             return 0;
         else {
             // just ask your next node for its rank and increment 
-            $nextNodeRrank=$this->next->distanceToLastNode();    
-            return ++$nextNodeRrank; 
+            $nextNodeRrank = $this->next->distanceToLastNode();
+            return ++$nextNodeRrank;
         }
     }
- 
+
 
     /**
      * IterableNodeInterface getKey method's implementation

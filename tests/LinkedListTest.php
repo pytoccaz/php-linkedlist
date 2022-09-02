@@ -106,7 +106,7 @@ class CollectionTest extends TestCase
 
         while ($list->length()) {
             $i++;
-            $popedNode = $list->lpopn();
+            $popedNode = $list->popFromHead();
             $arrayOfPopedValues[] = $popedNode->getValue();
             $this->assertEquals($popedNode->next(), null, "Poped node has no next node.");
         }
@@ -189,7 +189,7 @@ class CollectionTest extends TestCase
 
         while ($list->length()) {
             $i++;
-            $popedNode = $list->rpopn();
+            $popedNode = $list->popFromTail();
             $arrayOfPopedValues[] = $popedNode->getValue();
             $this->assertEquals($popedNode->next(), null, "Poped node has no next node.");
             $this->assertEquals($popedNode->prev(), null, "Poped node has no prev node.");
@@ -276,7 +276,7 @@ class CollectionTest extends TestCase
 
         while ($list->length()) {
             $i++;
-            $popedNode = $list->lpopn();
+            $popedNode = $list->popFromHead();
             $arrayOfPopedValues[] = $popedNode->getValue();
             $this->assertEquals($popedNode->next(), null, "Poped node has no next node.");
             $this->assertEquals($popedNode->prev(), null, "Poped node has no prev node.");

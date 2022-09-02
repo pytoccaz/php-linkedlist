@@ -24,7 +24,7 @@ final class FifoList extends AbstractDoublyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->lpushn(new FifoNode($data));
+        $this->pushToHead(new FifoNode($data));
         return $this;
     }
 
@@ -34,7 +34,7 @@ final class FifoList extends AbstractDoublyLinkedList {
      */
     public function pop():mixed 
     {
-         return $this->rpopn()->getValue();
+         return $this->popFromTail()->getValue();
     }
 
 };

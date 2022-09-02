@@ -24,7 +24,7 @@ final class FiloList extends AbstractSinglyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->lpushn(new FiloNode($data));
+        $this->pushToHead(new FiloNode($data));
         return $this;
     }
 
@@ -34,7 +34,7 @@ final class FiloList extends AbstractSinglyLinkedList {
      */
     public function pop():mixed 
     {
-         return $this->lpopn()->getValue();
+         return $this->popFromHead()->getValue();
     }
 
 };

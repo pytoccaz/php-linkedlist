@@ -1,5 +1,11 @@
 CHANGELOG
 =========
+3.0
+-----
+ * `AbstractSinglyLinkedList` methods `lpushn` and `lpopn` are replaced by `pushToHead` and `popFromHead` 
+ * `AbstractDoublyLinkedList` methods `rpushn` and `rpopn` are replaced by `pushToTail` and `popFromTail`
+
+ 
 2.0.4
 -----
  * format code with php intelephense linter

@@ -31,7 +31,7 @@ final class TailToHeadFifoList extends AbstractDoublyLinkedList {
      * @return $this
      */
     public function add($data):self {
-        $this->rpushn(new FifoNode($data));
+        $this->pushToTail(new FifoNode($data));
         return $this;
     }
 
@@ -41,7 +41,7 @@ final class TailToHeadFifoList extends AbstractDoublyLinkedList {
      */
     public function pop() 
     {
-         return $this->lpopn()->getValue();
+         return $this->popFromHead()->getValue();
     }
 
 };

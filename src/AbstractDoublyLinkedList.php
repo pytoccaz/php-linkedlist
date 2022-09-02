@@ -59,7 +59,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
      * Pushes a node at the left of the list. 
      * @return $this
      */
-    public function lpushn(AbstractDoublyLinkedNode $node): self
+    public function pushToHead(AbstractDoublyLinkedNode $node): self
     {
         if ($node->next())
             throw new ListException('The node is already linked to a next node !');
@@ -93,7 +93,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
      * The poped node is detached from its next Node.
      * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function lpopn(): ?AbstractDoublyLinkedNode
+    public function popFromHead(): ?AbstractDoublyLinkedNode
     {
 
         // if the list is empty just returns null 
@@ -121,10 +121,10 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
     }
 
     /**
-     * Pushes a node at the right of the list. 
+     * Pushes a node at the tail of the list. 
      * @return $this
      */
-    public function rpushn(AbstractDoublyLinkedNode $node): self
+    public function pushToTail(AbstractDoublyLinkedNode $node): self
     {
         if ($node->next())
             throw new ListException('The node is already linked to a next node !');
@@ -158,7 +158,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
      * The poped node is detached from its previous Node.
      * @return AbstractDoublyLinkedNode|null poped node 
      */
-    public function rpopn(): ?AbstractDoublyLinkedNode
+    public function popFromTail(): ?AbstractDoublyLinkedNode
     {
 
         // if the list is empty just returns null 
@@ -179,7 +179,7 @@ abstract class AbstractDoublyLinkedList extends AbstractCommonList
             $this->tail = $nodeToPop->prev()->setNext(null);
         }
 
-        $this->length -= 1; // deincrement length
+        $this->length -= 1; // reduce length
 
         // detach poped node from its previous brother node
         return $nodeToPop->setPrev(null);

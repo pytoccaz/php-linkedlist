@@ -72,7 +72,7 @@ abstract class AbstractCommonList implements \Iterator, \Countable
      * @return AbstractNode|null
      * 
      */
-    public function headn($offset = 0): ?AbstractNode
+    public function headn(int $offset = 0): ?AbstractNode
     {
         if ($offset === 0)
             return $this->head;

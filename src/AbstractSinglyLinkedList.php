@@ -36,7 +36,7 @@ abstract class AbstractSinglyLinkedList extends AbstractCommonList
     * Pushes a node at the head of the list. 
     * @return $this
     */
-   public function lpushn(AbstractSinglyLinkedNode $node): self
+   public function pushToHead(AbstractSinglyLinkedNode $node): self
    {
       if ($node->next())
          throw new NodeException('Next node is already set !');
@@ -54,14 +54,14 @@ abstract class AbstractSinglyLinkedList extends AbstractCommonList
     * The poped node is detached from its next Node.
     * @return AbstractSinglyLinkedNode|null poped node 
     */
-   public function lpopn(): ?AbstractSinglyLinkedNode
+   public function popFromHead(): ?AbstractSinglyLinkedNode
    {
       if ($this->length == 0)
          return null;
       else {
          $nodeToPop = $this->head;
          $this->head = $this->head->next();
-         $this->length -= 1; // deincrement length
+         $this->length -= 1; // reduce length
 
          // detach poped node from its brother next node
          return $nodeToPop->setNext(null);

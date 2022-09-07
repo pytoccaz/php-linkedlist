@@ -117,7 +117,7 @@ See `AbstractNode` `distanceToLastNode()` method as an example of inter-nodes co
 
 ```
 
-This design pattern is based on a recursive call.
+This design pattern is based on a recursivity.
 
 The time complexity of such recursive methods is `0(n)` where `n` is the number of nodes.
 

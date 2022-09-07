@@ -52,7 +52,7 @@ class MyList extends AbstractSinglyLinkedList {
 }
 
 // MyNode.php
-class MyNode extends AbstractSinglyNode {
+class MyNode extends AbstractSinglyLinkedNode {
 
     public $data;
     public function __construct($data) {

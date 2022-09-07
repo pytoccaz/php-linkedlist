@@ -20,11 +20,11 @@ use  Obernard\LinkedList\AbstractSinglyLinkedNode;
  * 
  * @author Olivier Bernard
  */
-class FiloNode extends AbstractSinglyLinkedNode
+class LifoNode extends AbstractSinglyLinkedNode
 {
 
     /**
-     * @var mixed data stored in a FiloList node.
+     * @var mixed data stored in a LifoList node.
      * 
      */
     public $data;

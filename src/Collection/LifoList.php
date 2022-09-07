@@ -14,22 +14,22 @@ use  Obernard\LinkedList\AbstractSinglyLinkedList;
 
 /**
  * 
- * First-in/last-out singly-linked list implementation.
+ * Last-in/first-out singly-linked list implementation.
  *  
  * 
  * @author Olivier Bernard
  */
 
-final class FiloList extends AbstractSinglyLinkedList
+final class LifoList extends AbstractSinglyLinkedList
 {
 
     /**
      * Pushes data at the head of the stack. 
      * @return $this
      */
-    public function add($data): self
+    public function push($data): self
     {
-        $this->pushToHead(new FiloNode($data));
+        $this->pushToHead(new LifoNode($data));
         return $this;
     }
 

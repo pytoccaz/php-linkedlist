@@ -6,7 +6,7 @@
 
 namespace Obernard\LinkedList\Tests;
 
-use  Obernard\LinkedList\Collection\FiloList;
+use  Obernard\LinkedList\Collection\LifoList;
 use  Obernard\LinkedList\Collection\FifoList;
 use Obernard\LinkedList\Collection\FifoNode;
 use PHPUnit\Framework\TestCase;
@@ -65,20 +65,20 @@ class CollectionTest extends TestCase
 
 
     /**
-     * Test AbstractSinglyLinkedList through FiloList
+     * Test AbstractSinglyLinkedList through LifoList
      * 
      */
-    public function testFiloList(): void
+    public function testLifoList(): void
     {
-        $list = new FiloList();
-        $this->assertInstanceOf(FiloList::class, $list);
+        $list = new LifoList();
+        $this->assertInstanceOf(LifoList::class, $list);
 
         $this->assertEquals($list->key(), null,  "Test of key internal method when list is empty.");
         $this->assertEquals($list->valid(), false,  "Test of valid method when list is empty.");
 
         $this->assertTrue($list->isEmpty(), "List is empty.");
 
-        $list->add(1)->add(2)->add(3);
+        $list->push(1)->push(2)->push(3);
 
         $this->assertEquals($list->head(0), $list->head(), "Get head node through head");
         $this->assertEquals($list->head(1), $list->head()->next(), "Get n'th node through head");
@@ -139,7 +139,7 @@ class CollectionTest extends TestCase
          */
 
         // A first node is pushed
-        $list->add(1);
+        $list->push(1);
 
         $this->assertEquals(1, $list->length(), "The list contains 1 node.");
 
@@ -154,26 +154,26 @@ class CollectionTest extends TestCase
         $this->nonEmptyFifoListAlwaysVerify($list);
 
         // A second node is pushed
-        $list->add(2);
+        $list->push(2);
         $this->nonEmptyFifoListAlwaysVerify($list);
         $this->assertEquals(2, $list->length(), "The list contains 2 nodes.");
 
         $this->assertEquals($list->tail()->prev(), $list->head(), "The head node is the tail previous node.");
         $this->assertEquals($list->head()->next(), $list->tail(), "The tail node is the head next node.");
 
-        $this->assertEquals($list->head()->getValue(), 2, "data are pushed at the head.");
-        $this->assertEquals($list->tail()->getValue(), 1, "data pushes shift data to toward the tail.");
+        $this->assertEquals($list->head()->getValue(), 1, "data are pushed at the tail.");
+        $this->assertEquals($list->tail()->getValue(), 2, "data are pushed at the tail.");
 
         // A third node is pushed
-        $list->add(3);
+        $list->push(3);
         $this->nonEmptyFifoListAlwaysVerify($list);
         $this->assertEquals(3, $list->length(), "The list contains 3 nodes.");
-        $this->assertEquals($list->head()->getValue(), 3, "data are pushed at the head.");
-        $this->assertEquals($list->head()->next()->getValue(), 2, "1/ data pushes shift data toward the tail.");
-        $this->assertEquals($list->tail()->getValue(), 1, "2/ data pushes shift data toward the tail.");
+        $this->assertEquals($list->tail()->getValue(), 3, "data are pushed at the tail.");
+        $this->assertEquals($list->tail()->prev()->getValue(), 2, "ata are pushed at the tail.");
+        $this->assertEquals($list->head()->getValue(), 1, "ata are pushed at the tail.");
 
 
-        $this->assertEquals($list->toArray(), [3, 2, 1], "Expected toArray() return.");
+        $this->assertEquals($list->toArray(), [1, 2, 3], "Expected toArray() return.");
 
         $ar = [];
         foreach ($list as $value) {
@@ -199,7 +199,7 @@ class CollectionTest extends TestCase
 
         $this->assertEquals($lengthBeforePops, $i, "Controles number of iterations.");
 
-        $this->assertEquals($arrayOfPopedValues, [1, 2, 3], "Poped values order");
+        $this->assertEquals($arrayOfPopedValues, [3, 2, 1], "Poped values order");
     }
 
 

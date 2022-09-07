@@ -24,7 +24,7 @@ class FifoNode extends AbstractDoublyLinkedNode
 {
 
     /**
-     * @var mixed data stored in a FiloList node.
+     * @var mixed data stored in a FifoList node.
      * 
      */
     public $data;

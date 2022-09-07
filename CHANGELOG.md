@@ -1,5 +1,10 @@
 CHANGELOG
 =========
+4.0
+-----
+ * rename `FiloList` class into `LifoList`
+ * fix `FifoList` iteration order mode  
+
 3.0
 -----
  * List methods `headn` and `tailn` are replaced by `head` and `tail` 

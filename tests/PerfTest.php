@@ -8,7 +8,7 @@ namespace Obernard\LinkedList\Tests;
 
 use Symfony\Component\Stopwatch\Stopwatch;
 
-use  Obernard\LinkedList\Collection\FiloList;
+use  Obernard\LinkedList\Collection\LifoList;
 use PHPUnit\Framework\TestCase;
 
 class PerfTest extends TestCase
@@ -26,12 +26,12 @@ class PerfTest extends TestCase
 
         $array = range(1, $nNode);
 
-        $collection = new FiloList;
+        $collection = new LifoList;
 
         $stopwatch->start('feed');
 
         foreach ($array as $item) {
-            $collection->add($item);
+            $collection->push($item);
         }
 
         $feedEvent  =  $stopwatch->stop('feed');

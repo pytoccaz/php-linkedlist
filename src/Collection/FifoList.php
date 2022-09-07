@@ -27,9 +27,9 @@ final class FifoList extends AbstractDoublyLinkedList
      * Pushes data at the head of the stack. 
      * @return $this
      */
-    public function add($data): self
+    public function push($data): self
     {
-        $this->pushToHead(new FifoNode($data));
+        $this->pushToTail(new FifoNode($data));
         return $this;
     }
 

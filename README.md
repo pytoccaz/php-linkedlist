@@ -8,17 +8,17 @@ Linked List implementation in PHP.
 composer require obernard/linkedlist
 ```
 
-## Usage of final class FiloList
+## Usage of final class LifoList
 
-Final classes like `FiloList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoublyLinkedList` offers much more coding potentials.
+Final classes like `LifoList` are given as examples of implementation of abstract linked-list classes but extending `AbstractSinglyLinkedList` or `AbstractDoublyLinkedList` offers much more coding potentials.
 
 Create an empty list and add nodes.
 ```php
-$stack = new Obernard\LinkedList\Collection\FiloList;
+$stack = new Obernard\LinkedList\Collection\LifoList;
 
-$stack->add('hello');
-$stack->add(1);
-$stack->add(['test1', 'test2']);
+$stack->push('hello');
+$stack->push(1);
+$stack->push(['test1', 'test2']);
 
 foreach ($stack as $key, $value) {
     // do something 
@@ -40,7 +40,7 @@ $l = $stack->length() // 1
 
 Abstract singly-linked list supports the use of abstract doubly-linked nodes but as a good practice use singly linked nodes inside singly-linked lists.
 
-Your concrete list class links instances of your concrete node classe. Concrete list classes may create node objects - like `FiloList` class does - or may not.   
+Your concrete list class links instances of your concrete node classe. Concrete list classes may create node objects - like `LifoList` class does - or may not.   
 
 In this example, `MyList` class does not create nodes by itself:
 

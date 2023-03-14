@@ -1,44 +1,33 @@
 <?php
-/*
- * This file is part of the Obernard package.
- *
- * (c) Olivier Bernard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
+declare(strict_types=1);
 
 namespace Obernard\LinkedList\Collection;
 
-use  Obernard\LinkedList\AbstractSinglyLinkedList;
+use Obernard\LinkedList\AbstractSinglyLinkedList;
 
 /**
- * 
  * Last-in/first-out singly-linked list implementation.
- *  
- * 
+ *
  * @author Olivier Bernard
  */
-
 final class LifoList extends AbstractSinglyLinkedList
 {
-
     /**
-     * Pushes data at the head of the stack. 
-     * @return $this
+     * Pushes data at the head of the stack.
      */
     public function push($data): self
     {
         $this->pushToHead(new LifoNode($data));
+
         return $this;
     }
 
     /**
      * Pops head data content from the stack.
-     * @return mixed the head node's data property 
      */
     public function pop(): mixed
     {
         return $this->popFromHead()->getValue();
     }
-};
+}

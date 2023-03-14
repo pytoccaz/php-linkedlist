@@ -1,44 +1,32 @@
 <?php
-/*
- * This file is part of the Obernard package.
- *
- * (c) Olivier Bernard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
+declare(strict_types=1);
 
 namespace Obernard\LinkedList\Collection;
 
-use  Obernard\LinkedList\AbstractSinglyLinkedNode;
+use Obernard\LinkedList\AbstractSinglyLinkedNode;
 
 /**
- * Node class defines a concrete node inside a List  
- * 
+ * Node class defines a concrete node inside a List.
+ *
  *  $this->next is arbitrary considered at the right of the node.
  *  $this->prev is arbitrary considered at the left of the node.
- * 
+ *
  * @author Olivier Bernard
  */
 class LifoNode extends AbstractSinglyLinkedNode
 {
-
-    /**
-     * @var mixed data stored in a LifoList node.
-     * 
-     */
-    public $data;
+    // data stored in a LifoList node.
+    public mixed $data;
 
     public function __construct($data)
     {
         $this->data = $data;
     }
 
-
     /**
-     * IterableNodeInterface getValue method's implementation
-     * Returns the data property as value when iterated 
-     * @return mixed the node's data property 
+     * IterableNodeInterface getValue method's implementation.
+     * Returns the data property as value when iterated.
      */
     public function getValue(): mixed
     {

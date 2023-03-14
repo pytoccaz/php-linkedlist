@@ -1,44 +1,33 @@
 <?php
-/*
- * This file is part of the Obernard package.
- *
- * (c) Olivier Bernard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
+declare(strict_types=1);
 
 namespace Obernard\LinkedList\Collection;
 
 use Obernard\LinkedList\AbstractDoublyLinkedList;
 
 /**
- * 
  * First-in/first-out doubly-linked list implementation.
- *  
- * 
+ *
  * @author Olivier Bernard
  */
-
 final class FifoList extends AbstractDoublyLinkedList
 {
-
     /**
-     * Pushes data at the head of the stack. 
-     * @return $this
+     * Pushes data at the head of the stack.
      */
     public function push($data): self
     {
         $this->pushToTail(new FifoNode($data));
+
         return $this;
     }
 
     /**
      * Pops tail data content from the stack.
-     * @return mixed the head node's data property 
      */
     public function pop(): mixed
     {
         return $this->popFromTail()->getValue();
     }
-};
+}

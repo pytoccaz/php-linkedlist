@@ -1,114 +1,98 @@
 <?php
-/*
- * This file is part of the Obernard package.
- *
- * (c) Olivier Bernard
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
+declare(strict_types=1);
 
 namespace Obernard\LinkedList;
 
 use Obernard\LinkedList\Exception\NodeException;
 
 /**
- * AbstractNode is the top class of SinglyLinkedListNode and by this way of DoublyLinkedListNode
- * Inside SinglyLinkedList, a node is linked to a next node only. 
- * 
+ * AbstractNode is the top class of SinglyLinkedListNode and by this way of DoublyLinkedListNode.
+ * Inside SinglyLinkedList, a node is linked to a next node only.
+ *
  * - $this->next is arbitrary considered at the right of the node.
- * 
+ *
  * Final Node class may re-define the 2 IterableNodeInterface methods:
  * - getValue that defines the values retuned during list iteration.
  * - getKey that defines the key returned during list iteration.
- * 
+ *
  * @author Olivier Bernard
  */
 abstract class AbstractNode implements IterableNodeInterface
 {
-
-
     protected ?AbstractNode $next = null;
-
 
     /**
      * Returns the following node (the node at $this right) by default.
      * Returns the N'th next linked node when $offset = N with N > 1.
-     * @param int $offset (optional): N'th node (beginning to $this) 
-     * @return AbstractNode|null
      */
-    public function next(int $offset = 1): ?AbstractNode
+    public function next(int $offset = 1): ?self
     {
-
-        if ($offset === 1)
+        if (1 === $offset) {
             return $this->next;
+        }
 
-        if ($offset === 0)
+        if (0 === $offset) {
             return $this;
+        }
 
+        if (0 > $offset) {
+            throw new NodeException('Offset cannot be lower than 0!');
+        }
 
-        if ($offset < 1)
-            throw (new NodeException("Offset cannot be lower than 0!"));
-
-        if ($this->islast())
-            throw (new NodeException("Offset out of range!"));
+        if ($this->islast()) {
+            throw new NodeException('Offset out of range!');
+        }
 
         return $this->next->next(--$offset);
     }
 
     /**
-     * Sets the next node. 
-     * @return AbstractNode
+     * Sets the next node.
      */
-    public function setNext(?AbstractNode $node): self
+    public function setNext(?self $node): self
     {
         $this->next = $node;
+
         return $this;
     }
 
-
     /**
      * Is the node last inside a singly-linked List ?
-     * @return bool
      */
     public function isLast(): bool
     {
-        return $this->next === null;
+        return null === $this->next;
     }
 
     /**
      *  Returns the node's rank beginning at the tail (ie at the end).
      *  !! Time complexity is O(n) !!
-     *  @return int 
      */
     public function distanceToLastNode(): int
     {
-        if ($this->isLast()) // if you Node are the most-right node just say 0
+        if ($this->isLast()) {
             return 0;
-        else {
-            // just ask your next node for its rank and increment 
-            $nextNodeRrank = $this->next->distanceToLastNode();
-            return ++$nextNodeRrank;
         }
+
+        // just ask your next node for its rank and increment
+        $nextNodeRrank = $this->next->distanceToLastNode();
+
+        return ++$nextNodeRrank;
     }
 
-
     /**
-     * IterableNodeInterface getKey method's implementation
-     * Returns the iterator index position as key when iterated 
-     * @param int $index 
-     * @return int $index
+     * IterableNodeInterface getKey method's implementation.
+     * Returns the iterator index position as key when iterated.
      */
     public function getKey($index): mixed
     {
         return $index;
     }
 
-
     /**
-     * IterableNodeInterface getValue method's implementation
-     * Returns the Node itself 
-     * @return mixed $this
+     * IterableNodeInterface getValue method's implementation.
+     * Returns the Node itself.
      */
     public function getValue(): mixed
     {
